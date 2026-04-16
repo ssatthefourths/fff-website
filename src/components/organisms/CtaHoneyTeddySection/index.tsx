@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import imgHoneyTeddyBear1 from 'figma:asset/ebfee8ac4b459ca44ac0eaa5c0382625c835ab92.png';
@@ -40,87 +40,67 @@ function Text3() {
   );
 }
 
-function Name() {
-  return (
-    <div className="bg-[#fffdf3] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[20px] shrink-0 w-full sm:w-[300px]" data-name="NAME">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">your name</p>
-      </div>
-    </div>
-  );
-}
-
-function Email() {
-  return (
-    <div className="bg-[#fffdf3] h-full relative rounded-[20px] shrink-0 w-full sm:w-[666px]" data-name="EMAIL">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center px-[40px] py-[20px] relative size-full">
-          <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-            <p className="leading-[normal]">your email</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function NameEmail() {
-  return (
-    <div className="content-stretch flex flex-col sm:flex-row flex-[1_0_0] gap-[25px] items-start min-h-px min-w-px relative w-full" data-name="NAME EMAIL">
-      <Name />
-      <Email />
-    </div>
-  );
-}
-
-function Button1() {
-  return (
-    <div className="bg-[#fffdf3] relative rounded-[5px] size-[30px]" data-name="Button">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="size-full" />
-      </div>
-    </div>
-  );
-}
-
-function AgreeTickbox() {
-  return (
-    <div className="content-stretch flex gap-[15px] items-center relative shrink-0" data-name="AGREE TICKBOX">
-      <div className="flex items-center justify-center relative shrink-0">
-        <div className="-scale-y-100 flex-none">
-          <Button1 />
-        </div>
-      </div>
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#fffdf3] text-[0px] text-center tracking-[2.7px] uppercase whitespace-normal sm:whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="text-[18px]">
-          <span className="leading-[normal]">{`i agree with the `}</span>
-          <span className="[text-decoration-skip-ink:none] decoration-solid font-['Roboto:Bold',sans-serif] font-bold leading-[normal] text-[#f6d75a] tracking-[2.7px] underline uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
-            terms of use
-          </span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function AgreeTickboxButton() {
-  return (
-    <div className="content-stretch flex flex-col sm:flex-row gap-4 lg:gap-[50px] items-center relative shrink-0 w-full" data-name="AGREE TICKBOX BUTTON">
-      <AgreeTickbox />
-      <Link to="/beginners" className="bg-[#f6d75a] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 w-full sm:w-[532px] hover:brightness-110 hover:scale-[1.02] transition-all duration-200" data-name="SEND ME FREE PATTERN BUTTON">
-        <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-normal sm:whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-          <p className="leading-[normal]">send me my free pattern!</p>
-        </div>
-      </Link>
-    </div>
-  );
-}
-
 function Inputs() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [agreed, setAgreed] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = () => {
+    setError('');
+    if (!name.trim()) { setError('Please enter your name'); return; }
+    if (!email.trim() || !email.includes('@')) { setError('Please enter a valid email'); return; }
+    if (!agreed) { setError('Please agree to the terms of use'); return; }
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="content-stretch flex flex-col gap-[15px] items-center relative shrink-0 w-full text-center" data-name="INPUTS">
+        <p className="font-['Bingo_Action_Comic:Regular',sans-serif] text-[#f6d75a] text-[clamp(28px,4vw,45px)]">Thank You! 🎉</p>
+        <p className="font-['Roboto:Regular',sans-serif] text-[#fffdf3] text-[22px] leading-[1.4]" style={{ fontVariationSettings: "'wdth' 100" }}>Check your email for your free Honey Teddy pattern!</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="content-stretch flex flex-col gap-[15px] h-auto lg:h-[139px] items-start relative shrink-0 w-full" data-name="INPUTS">
-      <NameEmail />
-      <AgreeTickboxButton />
+    <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0 w-full" data-name="INPUTS">
+      {/* Name + Email row */}
+      <div className="content-stretch flex flex-col sm:flex-row flex-[1_0_0] gap-[25px] items-start min-h-px min-w-px relative w-full" data-name="NAME EMAIL">
+        <input
+          type="text"
+          placeholder="YOUR NAME"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="bg-[#fffdf3] px-[40px] py-[20px] rounded-[20px] shrink-0 w-full sm:w-[300px] font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[18px] tracking-[2.7px] uppercase placeholder:text-[#3f3f3f]/40 focus:outline-none focus:ring-2 focus:ring-[#f6d75a]"
+          style={{ fontVariationSettings: "'wdth' 100" }}
+        />
+        <input
+          type="email"
+          placeholder="YOUR EMAIL"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="bg-[#fffdf3] px-[40px] py-[20px] rounded-[20px] shrink-0 w-full sm:flex-1 font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[18px] tracking-[2.7px] uppercase placeholder:text-[#3f3f3f]/40 focus:outline-none focus:ring-2 focus:ring-[#f6d75a]"
+          style={{ fontVariationSettings: "'wdth' 100" }}
+        />
+      </div>
+      {/* Agree + Submit row */}
+      <div className="content-stretch flex flex-col sm:flex-row gap-4 lg:gap-[50px] items-center relative shrink-0 w-full" data-name="AGREE TICKBOX BUTTON">
+        <label className="content-stretch flex gap-[15px] items-center relative shrink-0 cursor-pointer">
+          <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="size-[30px] accent-[#f6d75a] rounded-[5px]" />
+          <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#fffdf3] text-[18px] tracking-[2.7px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
+            i agree with the{' '}
+            <Link to="/terms" className="text-[#f6d75a] underline">terms of use</Link>
+          </span>
+        </label>
+        <button onClick={handleSubmit} className="bg-[#f6d75a] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 w-full sm:w-[532px] hover:brightness-110 hover:scale-[1.02] transition-all duration-200 cursor-pointer" data-name="SEND ME FREE PATTERN BUTTON">
+          <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-normal sm:whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+            send me my free pattern!
+          </span>
+        </button>
+      </div>
+      {error && <p className="text-[#f6d75a] font-['Roboto:Bold',sans-serif] font-bold text-[16px]">{error}</p>}
     </div>
   );
 }

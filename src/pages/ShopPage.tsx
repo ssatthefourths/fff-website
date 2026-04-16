@@ -116,12 +116,24 @@ function ProductCard({ pattern }: { pattern: Pattern }) {
 export function ShopPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get('category') || '';
+  const searchQuery = searchParams.get('q') || '';
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   const filteredPatterns = useMemo(() => {
-    if (!activeCategory) return patterns;
-    return patterns.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
+    let result = patterns;
+    if (activeCategory) {
+      result = result.filter((p) => p.category === activeCategory);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter((p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.shortDescription.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [activeCategory, searchQuery]);
 
   const visiblePatterns = filteredPatterns.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPatterns.length;
@@ -129,10 +141,18 @@ export function ShopPage() {
   function handleCategoryChange(slug: string) {
     setVisibleCount(ITEMS_PER_PAGE);
     if (slug === '') {
-      setSearchParams({});
+      setSearchParams(searchQuery ? { q: searchQuery } : {});
     } else {
-      setSearchParams({ category: slug });
+      setSearchParams(searchQuery ? { category: slug, q: searchQuery } : { category: slug });
     }
+  }
+
+  function handleSearch(value: string) {
+    setVisibleCount(ITEMS_PER_PAGE);
+    const params: Record<string, string> = {};
+    if (activeCategory) params.category = activeCategory;
+    if (value.trim()) params.q = value;
+    setSearchParams(params);
   }
 
   return (
@@ -154,6 +174,20 @@ export function ShopPage() {
         >
           Choose from over 120 fun, easy-to-follow sewing patterns!
         </p>
+        {/* Search */}
+        <div className="max-w-[500px] mx-auto mt-6 relative">
+          <input
+            type="text"
+            placeholder="Search patterns..."
+            value={searchQuery}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="w-full bg-white border-2 border-[#8b52c5]/30 rounded-[100px] px-6 py-3 text-[#3f3f3f] text-[16px] focus:outline-none focus:border-[#8b52c5] transition-colors"
+            style={{ fontFamily: "'Roboto:Regular', sans-serif", fontVariationSettings: "'wdth' 100" }}
+          />
+          {searchQuery && (
+            <button onClick={() => handleSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8b52c5] text-xl cursor-pointer hover:text-[#3f3f3f]">×</button>
+          )}
+        </div>
       </section>
 
       {/* Category Tabs */}

@@ -109,39 +109,36 @@ function FffMainLogo() {
 }
 
 function SearchBar() {
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (query.trim()) {
+      window.location.href = `/patterns?q=${encodeURIComponent(query.trim())}`;
+    }
+  };
+
   return (
-    // Search bar dropdown: lime green panel that hangs from the top-right
-    // Desktop only — hidden on mobile
     <div
       className="hidden md:block absolute bg-[#bbd148] border-[#8b52c5] border-b-2 border-dashed border-l-2 border-r-2 h-[68px] right-[2.64vw] rounded-bl-[20px] rounded-br-[20px] rounded-tl-[5px] rounded-tr-[5px] top-0 w-[clamp(240px,31.6vw,455px)]"
       data-name="SEARCH BAR CONTAINER"
     >
-      {/* Search bar SVG scaled to container */}
-      <div className="absolute h-[40px] left-[3.96%] top-[14px] w-[91.2%]">
-        <svg
-          className="absolute block inset-0 size-full"
-          fill="none"
-          preserveAspectRatio="none"
-          viewBox="0 0 415 40"
-        >
-          <g clipPath="url(#clip-search-bar)">
-            <path
-              d={svgPaths.p23e56c00}
-              stroke="var(--stroke-0, #8B52C5)"
-              strokeWidth="2"
-            />
-            <g>
-              <path d={svgPaths.p1d577600} fill="var(--fill-0, #8B52C5)" />
-              <path d={svgPaths.p23899000} fill="var(--fill-0, #8B52C5)" />
-            </g>
-          </g>
-          <defs>
-            <clipPath id="clip-search-bar">
-              <rect fill="white" height="40" width="415" />
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
+      <form onSubmit={handleSubmit} className="absolute h-[40px] left-[3.96%] top-[14px] w-[91.2%] flex items-center">
+        <input
+          type="text"
+          placeholder="Search patterns..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full h-full bg-white border-2 border-[#8b52c5] rounded-[20px] px-4 pr-10 text-[#3f3f3f] text-[14px] font-['Roboto:Regular',sans-serif] focus:outline-none focus:border-[#8b52c5]"
+          style={{ fontVariationSettings: "'wdth' 100" }}
+        />
+        <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B52C5" strokeWidth="2.5" strokeLinecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </form>
     </div>
   );
 }
