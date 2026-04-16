@@ -1,0 +1,53 @@
+import { BrowserRouter, Routes, Route } from 'react-router';
+import { CartProvider } from '../context/CartContext';
+import { Layout } from '../components/Layout';
+import HomePage from '../pages/HomePage';
+import { lazy, Suspense } from 'react';
+
+const ShopPage = lazy(() => import('../pages/ShopPage'));
+const ProductPage = lazy(() => import('../pages/ProductPage'));
+const CartPage = lazy(() => import('../pages/CartPage'));
+const CheckoutPage = lazy(() => import('../pages/CheckoutPage'));
+const BlogPage = lazy(() => import('../pages/BlogPage'));
+const BlogPostPage = lazy(() => import('../pages/BlogPostPage'));
+const FaqPage = lazy(() => import('../pages/FaqPage'));
+const AboutPage = lazy(() => import('../pages/AboutPage'));
+const BeginnersPage = lazy(() => import('../pages/BeginnersPage'));
+const AccountPage = lazy(() => import('../pages/AccountPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="animate-spin h-12 w-12 border-4 border-[#8b52c5] border-t-transparent rounded-full" />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <CartProvider>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="patterns" element={<ShopPage />} />
+              <Route path="patterns/:category" element={<ShopPage />} />
+              <Route path="patterns/:category/:slug" element={<ProductPage />} />
+              <Route path="cart" element={<CartPage />} />
+              <Route path="checkout" element={<CheckoutPage />} />
+              <Route path="blog" element={<BlogPage />} />
+              <Route path="blog/:slug" element={<BlogPostPage />} />
+              <Route path="faq" element={<FaqPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="beginners" element={<BeginnersPage />} />
+              <Route path="account" element={<AccountPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </CartProvider>
+    </BrowserRouter>
+  );
+}

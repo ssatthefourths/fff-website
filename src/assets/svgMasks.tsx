@@ -1,0 +1,15 @@
+export {
+  imgGroup,
+  imgGroup1,
+  imgGroup2,
+  imgGroup3,
+  imgGroup4,
+  imgGroup5,
+  imgGroup6,
+  imgGroup7,
+  imgGroup8,
+  imgGroup9,
+  imgGroup10,
+  imgGroup11,
+  imgGroup12,
+} from '../imports/svg-9news';

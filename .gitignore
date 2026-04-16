@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Screenshots (dev only)
+SCREENSHOTS/
+
+# Claude/MCP config (local dev)
+.claude/
+.mcp.json
+
+# Wrangler
+.wrangler/

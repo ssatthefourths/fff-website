@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+@font-face {
+  font-family: 'Bingo Action Comic';
+  src: url('https://fonts.cdnfonts.com/s/14893/Bingo Action Comic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Magic Honey';
+  src: url('https://fonts.cdnfonts.com/s/94733/MagicHoney-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('https://fonts.cdnfonts.com/s/4/Avenir.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('https://fonts.cdnfonts.com/s/4/AvenirHeavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('https://fonts.cdnfonts.com/s/4/AvenirBook.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
