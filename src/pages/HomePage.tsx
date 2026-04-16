@@ -1,3 +1,4 @@
+import { usePageMeta } from '../hooks/usePageMeta';
 import { HeroSection } from '../components/organisms/HeroSection';
 import { ReviewsSection } from '../components/organisms/ReviewsSection';
 import { ShopCollectionsSection } from '../components/organisms/ShopCollectionsSection';
@@ -10,6 +11,7 @@ import { FreeStuffSection } from '../components/organisms/FreeStuffSection';
 import { BlogSection } from '../components/organisms/BlogSection';
 
 export default function HomePage() {
+  usePageMeta('Funky Friends Factory — Fun Soft Toy Sewing Patterns', 'Fun, easy-to-follow Soft Toy Sewing Patterns with step-by-step photo tutorials. Over 120 patterns. Instant PDF downloads!');
   return (
     <>
       <HeroSection />

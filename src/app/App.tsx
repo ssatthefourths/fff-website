@@ -15,6 +15,8 @@ const AboutPage = lazy(() => import('../pages/AboutPage'));
 const BeginnersPage = lazy(() => import('../pages/BeginnersPage'));
 const AccountPage = lazy(() => import('../pages/AccountPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+const PrivacyPage = lazy(() => import('../pages/PrivacyPage'));
+const TermsPage = lazy(() => import('../pages/TermsPage'));
 
 function PageLoader() {
   return (
@@ -43,6 +45,8 @@ export default function App() {
               <Route path="about" element={<AboutPage />} />
               <Route path="beginners" element={<BeginnersPage />} />
               <Route path="account" element={<AccountPage />} />
+              <Route path="privacy" element={<PrivacyPage />} />
+              <Route path="terms" element={<TermsPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>

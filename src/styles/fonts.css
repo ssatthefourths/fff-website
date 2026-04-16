@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
+/* Brand fonts — loaded from local files */
 @font-face {
   font-family: 'Bingo Action Comic';
-  src: url('https://fonts.cdnfonts.com/s/14893/Bingo Action Comic.woff') format('woff');
+  src: url('/fonts/Bingo Action Comic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Figma alias for Bingo Action Comic */
+@font-face {
+  font-family: 'Bingo Action Comic:Regular';
+  src: url('/fonts/Bingo Action Comic.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -11,8 +21,41 @@
 
 @font-face {
   font-family: 'Magic Honey';
-  src: url('https://fonts.cdnfonts.com/s/94733/MagicHoney-Regular.woff') format('woff');
+  src: url('/fonts/Magic Honey.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Figma alias for Magic Honey */
+@font-face {
+  font-family: 'Magic Honey:Regular';
+  src: url('/fonts/Magic Honey.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Magic Honey Bold';
+  src: url('/fonts/Magic Honey Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Magic Honey Bold:Regular';
+  src: url('/fonts/Magic Honey Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Magic_Honey_Bold:Regular';
+  src: url('/fonts/Magic Honey Bold.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -37,6 +80,23 @@
   font-family: 'Avenir';
   src: url('https://fonts.cdnfonts.com/s/4/AvenirBook.woff') format('woff');
   font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Figma aliases for Avenir */
+@font-face {
+  font-family: 'Avenir:Book';
+  src: url('https://fonts.cdnfonts.com/s/4/AvenirBook.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir:Heavy';
+  src: url('https://fonts.cdnfonts.com/s/4/AvenirHeavy.woff') format('woff');
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }

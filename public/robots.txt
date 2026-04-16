@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fff-website.pages.dev/sitemap.xml

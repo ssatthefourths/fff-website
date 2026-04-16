@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { NavItem } from '../../molecules/NavItem';
 import svgPaths from '../../../assets/svgPaths';
@@ -161,7 +162,9 @@ export function Navigation({
   rightLinks = DEFAULT_RIGHT_LINKS,
 }: NavigationProps) {
   const { itemCount } = useCart();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const allLinks = [...leftLinks, ...rightLinks];
+  const closeMobile = () => setMobileOpen(false);
 
   return (
     <div
@@ -215,7 +218,7 @@ export function Navigation({
         <FffMainLogo />
 
         {/* Hamburger → Sheet drawer */}
-        <Sheet>
+        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
             <button
               type="button"
@@ -229,12 +232,17 @@ export function Navigation({
             <nav className="flex flex-col gap-[28px] px-[24px]">
               {allLinks.map((link) => (
                 <NavItem
-                  key={link.href}
+                  key={link.to || link.href}
                   label={link.label}
                   href={link.href}
+                  to={link.to}
+                  onClick={closeMobile}
                   className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] tracking-[2.7px] uppercase text-[#8b52c5]"
                 />
               ))}
+              <Link to="/cart" onClick={closeMobile} className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] tracking-[2.7px] uppercase text-[#8b52c5]">
+                Cart {itemCount > 0 && `(${itemCount})`}
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>
