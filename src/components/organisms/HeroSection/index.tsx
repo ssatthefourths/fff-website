@@ -682,9 +682,9 @@ function Content7() {
 
 export function HeroSection() {
   return (
-    <div className="relative h-auto lg:h-[841px] w-full overflow-x-clip bg-[#8b52c5]" data-name="HERO SECTION">
+    <div className="relative w-full overflow-x-clip bg-[#8b52c5]" data-name="HERO SECTION">
       <Content7 />
-      <div className="hidden lg:block absolute right-0 bottom-[98.054px] h-[148.764px] w-[265.032px]" data-name="Vector">
+      <div className="hidden lg:block absolute right-0 bottom-[98px] h-[148.764px] w-[265.032px]" data-name="Vector">
         <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 265.032 148.764">
           <g id="Vector">
             <path d={svgPaths.p10b53e40} fill="var(--fill-0, #F6D75A)" />
@@ -693,7 +693,7 @@ export function HeroSection() {
           </g>
         </svg>
       </div>
-      <div className="relative h-[98.054px] w-full lg:absolute lg:bottom-0 lg:w-full z-10" data-name="BELOW HERO SHAPE DIVIDER">
+      <div className="relative h-[98.054px] w-full z-10" data-name="BELOW HERO SHAPE DIVIDER">
         <div className="absolute inset-[0_-0.02%]" data-name="Vector">
           <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="xMidYMax slice" viewBox="0 0 1440.61 98.0537">
             <g id="Vector">

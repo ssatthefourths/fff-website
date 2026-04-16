@@ -74,15 +74,15 @@ function Inputs() {
   }
 
   return (
-    <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0 w-full" data-name="INPUTS">
+    <div className="flex flex-col gap-[20px] w-full" data-name="INPUTS">
       {/* Name + Email row */}
-      <div className="content-stretch flex flex-col sm:flex-row flex-[1_0_0] gap-[25px] items-start min-h-px min-w-px relative w-full" data-name="NAME EMAIL">
+      <div className="flex flex-col sm:flex-row gap-[25px] w-full">
         <input
           type="text"
           placeholder="YOUR NAME"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="bg-[#fffdf3] px-[40px] py-[20px] rounded-[20px] shrink-0 w-full sm:w-[300px] font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[18px] tracking-[2.7px] uppercase placeholder:text-[#3f3f3f]/40 focus:outline-none focus:ring-2 focus:ring-[#f6d75a]"
+          className="bg-[#fffdf3] px-[30px] py-[18px] rounded-[20px] w-full sm:w-[280px] font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[16px] tracking-[2.7px] uppercase placeholder:text-[#3f3f3f]/40 focus:outline-none focus:ring-2 focus:ring-[#f6d75a]"
           style={{ fontVariationSettings: "'wdth' 100" }}
         />
         <input
@@ -90,26 +90,26 @@ function Inputs() {
           placeholder="YOUR EMAIL"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-[#fffdf3] px-[40px] py-[20px] rounded-[20px] shrink-0 w-full sm:flex-1 font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[18px] tracking-[2.7px] uppercase placeholder:text-[#3f3f3f]/40 focus:outline-none focus:ring-2 focus:ring-[#f6d75a]"
+          className="bg-[#fffdf3] px-[30px] py-[18px] rounded-[20px] w-full sm:flex-1 font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[16px] tracking-[2.7px] uppercase placeholder:text-[#3f3f3f]/40 focus:outline-none focus:ring-2 focus:ring-[#f6d75a]"
           style={{ fontVariationSettings: "'wdth' 100" }}
         />
       </div>
-      {/* Agree + Submit row */}
-      <div className="content-stretch flex flex-col sm:flex-row gap-4 lg:gap-[50px] items-center relative shrink-0 w-full" data-name="AGREE TICKBOX BUTTON">
-        <label className="content-stretch flex gap-[15px] items-center relative shrink-0 cursor-pointer">
-          <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="size-[30px] accent-[#f6d75a] rounded-[5px]" />
-          <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#fffdf3] text-[18px] tracking-[2.7px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
+      {/* Agree checkbox + Submit button row */}
+      <div className="flex flex-col sm:flex-row gap-4 lg:gap-[30px] items-center w-full">
+        <label className="flex gap-[12px] items-center shrink-0 cursor-pointer">
+          <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="size-[24px] accent-[#f6d75a] rounded-[5px] shrink-0" />
+          <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#fffdf3] text-[14px] tracking-[2px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
             i agree with the{' '}
             <Link to="/terms" className="text-[#f6d75a] underline">terms of use</Link>
           </span>
         </label>
-        <button onClick={handleSubmit} className="bg-[#f6d75a] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 w-full sm:w-[532px] hover:brightness-110 hover:scale-[1.02] transition-all duration-200 cursor-pointer" data-name="SEND ME FREE PATTERN BUTTON">
-          <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-normal sm:whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+        <button onClick={handleSubmit} className="bg-[#f6d75a] flex items-center justify-center px-[40px] py-[18px] rounded-[100px] w-full sm:flex-1 hover:brightness-110 hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+          <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[16px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
             send me my free pattern!
           </span>
         </button>
       </div>
-      {error && <p className="text-[#f6d75a] font-['Roboto:Bold',sans-serif] font-bold text-[16px]">{error}</p>}
+      {error && <p className="text-[#f6d75a] font-['Roboto:Bold',sans-serif] font-bold text-[14px]">{error}</p>}
     </div>
   );
 }
