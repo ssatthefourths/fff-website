@@ -13,18 +13,52 @@ function AccountPage() {
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setMessage('Account features coming soon! Check back later.');
+    setMessage('');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessage(`Welcome back, ${data.user.name}! 🎉`);
+      } else {
+        setMessage(data.error || 'Login failed. Please try again.');
+      }
+    } catch {
+      setMessage('Unable to connect. Please try again later.');
+    }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setMessage('');
     if (registerPassword !== registerConfirmPassword) {
       setMessage('Passwords do not match. Please try again.');
       return;
     }
-    setMessage('Account features coming soon! Check back later.');
+    if (registerPassword.length < 6) {
+      setMessage('Password must be at least 6 characters.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: registerName, email: registerEmail, password: registerPassword }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessage(`Account created! Welcome, ${data.user.name}! 🎉`);
+      } else {
+        setMessage(data.error || 'Registration failed. Please try again.');
+      }
+    } catch {
+      setMessage('Unable to connect. Please try again later.');
+    }
   };
 
   const inputClasses =
