@@ -1,7 +1,8 @@
 import React from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
+import { patterns } from '../../../data/products';
 import imgFrame256 from 'figma:asset/c9712d88d9a9a431f7fb17b4a516a3a946e53ee0.png';
 import imgFrame257 from 'figma:asset/ddd96d147d6704729dbdbb04809e812f4d2508eb.png';
 import { imgGroup7, imgGroup8, imgGroup9, imgGroup10 } from '../../../imports/svg-9news';
@@ -39,218 +40,120 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 text-[#3f3f3f] text-center" data-name="TEXT">
       <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[clamp(36px,5vw,70px)] w-full max-w-[1200px]">Patterns for every stage of your journey!</p>
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[26px] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis, tellus ac consequat tempus, nunc odio consequat quam, ultricies elementum urna nulla et purus. `}</p>
+      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[26px] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Browse our collection of over 120 fun, easy-to-follow sewing patterns. From cuddly animals to adorable dolls — find the perfect pattern for every skill level. All patterns are instant PDF downloads!`}</p>
     </div>
   );
 }
 
-function Frame13() {
-  return (
-    <div className="bg-[#dde8a3] content-stretch flex items-center justify-center p-[10px] relative rounded-[5px] shrink-0">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">easy/beginners</p>
-      </div>
-    </div>
-  );
-}
+const TABS = [
+  { key: 'beginner', label: 'easy/beginners', filter: (p: typeof patterns[0]) => p.difficulty === 'beginner' },
+  { key: 'advanced', label: 'challenging', filter: (p: typeof patterns[0]) => p.difficulty === 'advanced' || p.difficulty === 'intermediate' },
+  { key: 'seasonal', label: 'seasonal', filter: (p: typeof patterns[0]) => p.category === 'seasonal' },
+  { key: 'featured', label: 'best sellers', filter: (p: typeof patterns[0]) => p.isFeatured },
+  { key: 'new', label: 'new designs', filter: (p: typeof patterns[0]) => p.isNew },
+] as const;
 
-function Frame12() {
-  return (
-    <div className="bg-[#dde8a3] content-stretch flex items-center justify-center p-[10px] relative rounded-[5px] shrink-0">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">challenging</p>
-      </div>
-    </div>
-  );
-}
+const TAB_TITLES: Record<string, { title: string; subtitle: string }> = {
+  beginner: { title: 'Browse Beginner Patterns', subtitle: 'Perfect for first-time sewers! These patterns are easy to follow with step-by-step photo instructions.' },
+  advanced: { title: 'Browse Challenging Patterns', subtitle: 'Ready for a challenge? These patterns feature more complex techniques for experienced sewers.' },
+  seasonal: { title: 'Browse Seasonal Patterns', subtitle: 'Sew some cute gifts for your loved ones with these seasonal patterns. All INSTANT downloads.' },
+  featured: { title: 'Browse Best Sellers', subtitle: 'Our most popular patterns loved by thousands of Funky Friends Factory fans worldwide!' },
+  new: { title: 'Browse New Designs', subtitle: 'Check out our latest pattern releases — fresh designs just added to the collection!' },
+};
 
-function Frame6() {
-  return (
-    <div className="bg-[#fffdf3] content-stretch flex h-[54px] items-start justify-center p-[10px] relative rounded-tl-[5px] rounded-tr-[5px] shrink-0 w-[167px]">
-      <div className="flex flex-col font-['Roboto:Black',sans-serif] font-black justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">seasonal</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame11() {
-  return (
-    <div className="bg-[#dde8a3] content-stretch flex items-center justify-center p-[10px] relative rounded-[5px] shrink-0">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">best sellers</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame14() {
-  return (
-    <div className="bg-[#dde8a3] content-stretch flex items-center justify-center p-[10px] relative rounded-[5px] shrink-0">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">new designs</p>
-      </div>
-    </div>
-  );
-}
-
-function DrawerTabs() {
-  return (
-    <div className="content-stretch flex flex-wrap gap-[15px] items-start justify-center relative shrink-0 w-full max-w-[937px]" data-name="DRAWER TABS">
-      <Frame13 />
-      <Frame12 />
-      <Frame6 />
-      <Frame11 />
-      <Frame14 />
-    </div>
-  );
-}
-
-function DrawerTitle() {
-  return (
-    <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 text-[#3f3f3f] text-center" data-name="DRAWER TITLE">
-      <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-[1.1] not-italic relative shrink-0 text-[clamp(28px,4vw,50px)] w-full max-w-[1200px]">Browse Seasonal Patterns</p>
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[26px] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-        Sew some cute gift for your loved ones with these seasonal patterns. All INSTANT downloads.
-      </p>
-    </div>
-  );
-}
-
-function Frame7() {
-  return (
-    <div className="content-stretch flex flex-col h-[236px] items-start p-[12px] relative rounded-[20px] shrink-0 w-[260px]">
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-[20px]">
-        <div className="absolute bg-[#fdf8e0] inset-0 rounded-[20px]" />
-        <div className="absolute inset-0 overflow-hidden rounded-[20px]">
-          <img alt="" className="absolute h-[100.09%] left-[-6.88%] max-w-none top-[-0.05%] w-[113.76%]" src={imgFrame256} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame8() {
-  return (
-    <div className="h-[236px] relative rounded-[20px] shrink-0 w-[260px]">
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-[20px]">
-        <div className="absolute bg-[#d7e9f7] inset-0 rounded-[20px]" />
-        <div className="absolute inset-0 overflow-hidden rounded-[20px]">
-          <img alt="" className="absolute h-[88%] left-[10.15%] max-w-none top-[6%] w-[80%]" src={imgFrame257} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame9() {
-  return (
-    <div className="content-stretch flex flex-col h-[236px] items-start p-[12px] relative rounded-[20px] shrink-0 w-[260px]">
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-[20px]">
-        <div className="absolute bg-[#fdf8e0] inset-0 rounded-[20px]" />
-        <div className="absolute inset-0 overflow-hidden rounded-[20px]">
-          <img alt="" className="absolute h-[100.09%] left-[-6.88%] max-w-none top-[-0.05%] w-[113.76%]" src={imgFrame256} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame10() {
-  return (
-    <div className="h-[236px] relative rounded-[20px] shrink-0 w-[260px]">
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-[20px]">
-        <div className="absolute bg-[#dde8a3] inset-0 rounded-[20px]" />
-        <div className="absolute inset-0 overflow-hidden rounded-[20px]">
-          <img alt="" className="absolute h-[100.09%] left-[-6.88%] max-w-none top-[-0.05%] w-[113.76%]" src={imgFrame256} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Content5() {
-  return (
-    <div className="content-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] items-start relative shrink-0" data-name="CONTENT">
-      <div className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-full lg:w-[261px]" data-name="DRAWER CARD 1">
-        <Frame7 />
-        <div className="flex flex-col font-['Figtree:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[26px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.5]">Elf Christmas Twin Dolls</p>
-        </div>
-        <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.6]">{`They'll look awesome in all sorts of Christmas prints so get festive and mix and match to make your own!`}</p>
-        </div>
-      </div>
-      <div className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-full lg:w-[261px]" data-name="DRAWER CARD 2">
-        <Frame8 />
-        <div className="flex flex-col font-['Figtree:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[26px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.5]">{`Reggie Reindeer `}</p>
-        </div>
-        <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.6]">{`They'll look awesome in all sorts of Christmas prints so get festive and mix and match to make your own!`}</p>
-        </div>
-      </div>
-      <div className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-full lg:w-[261px]" data-name="DRAWER CARD 3">
-        <Frame9 />
-        <div className="flex flex-col font-['Figtree:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[26px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.5]">Socks the Sitting Cat</p>
-        </div>
-        <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.6]">{`They'll look awesome in all sorts of Christmas prints so get festive and mix and match to make your own!`}</p>
-        </div>
-      </div>
-      <div className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-full lg:w-[261px]" data-name="DRAWER CARD 4">
-        <Frame10 />
-        <div className="flex flex-col font-['Figtree:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[26px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.5]">Ben the Beginner Bear</p>
-        </div>
-        <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-full lg:w-[261px]">
-          <p className="leading-[1.6]">{`They'll look awesome in all sorts of Christmas prints so get festive and mix and match to make your own!`}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function DrawerContent() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
-
-  return (
-    <div className="bg-[#fffdf3] content-stretch flex flex-col gap-[40px] items-center px-4 py-8 lg:px-[30px] lg:py-[60px] relative rounded-[20px] shrink-0" data-name="DRAWER CONTENT">
-      <DrawerTitle />
-      <div className="content-stretch flex gap-[30px] items-center justify-center relative shrink-0 w-full max-w-[1270px]" data-name="DRAWER CONTENT">
-        <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" data-name="LEFT ARROW" aria-label="Scroll left">
-          <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
-              <path d={svgPaths.p1ad98580} id="ARROW LEFT" stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
-            </svg>
-          </div>
-        </button>
-        <div ref={scrollRef} className="overflow-x-auto scroll-smooth flex gap-[30px] items-start w-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <Content5 />
-        </div>
-        <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
-          <div className="flex-none rotate-180">
-            <div className="h-[40px] relative w-[20px]" data-name="RIGHT ARROW">
-              <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
-                  <path d={svgPaths.p1ad98580} id="RIGHT ARROW" stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </button>
-      </div>
-    </div>
-  );
-}
+const CARD_COLORS = ['#fdf8e0', '#d7e9f7', '#f4eefa', '#dde8a3', '#f9b7b7', '#bbd148'];
 
 function DrawersContent() {
+  const [activeTab, setActiveTab] = useState('seasonal');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 290, behavior: 'smooth' });
+
+  const tab = TABS.find(t => t.key === activeTab) ?? TABS[2];
+  const filteredProducts = patterns.filter(tab.filter);
+  const info = TAB_TITLES[activeTab] ?? TAB_TITLES.seasonal;
+
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0" data-name="DRAWERS CONTENT">
-      <DrawerTabs />
-      <DrawerContent />
+      {/* TABS */}
+      <div className="content-stretch flex flex-wrap gap-[15px] items-start justify-center relative shrink-0 w-full max-w-[937px]" data-name="DRAWER TABS">
+        {TABS.map(t => (
+          <button
+            key={t.key}
+            onClick={() => { setActiveTab(t.key); scrollRef.current?.scrollTo({ left: 0 }); }}
+            className={`content-stretch flex items-center justify-center p-[10px] relative rounded-[5px] shrink-0 cursor-pointer transition-all duration-200 ${
+              activeTab === t.key
+                ? 'bg-[#fffdf3] rounded-tl-[5px] rounded-tr-[5px] rounded-bl-none rounded-br-none'
+                : 'bg-[#dde8a3] hover:brightness-105'
+            }`}
+          >
+            <span className={`font-['Roboto:Bold',sans-serif] font-bold text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap ${
+              activeTab === t.key ? 'text-[#8b52c5] font-black' : 'text-[#3f3f3f]'
+            }`} style={{ fontVariationSettings: "'wdth' 100" }}>
+              {t.label}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* DRAWER CONTENT */}
+      <div className="bg-[#fffdf3] content-stretch flex flex-col gap-[40px] items-center px-4 py-8 lg:px-[30px] lg:py-[60px] relative rounded-[20px] shrink-0" data-name="DRAWER CONTENT">
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 text-[#3f3f3f] text-center">
+          <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-[1.1] not-italic relative shrink-0 text-[clamp(28px,4vw,50px)] w-full max-w-[1200px]">{info.title}</p>
+          <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[26px] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+            {info.subtitle}
+          </p>
+        </div>
+
+        <div className="content-stretch flex gap-[30px] items-center justify-center relative shrink-0 w-full max-w-[1270px]">
+          <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll left">
+            <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
+                <path d={svgPaths.p1ad98580} stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
+              </svg>
+            </div>
+          </button>
+
+          <div ref={scrollRef} className="overflow-x-auto scroll-smooth flex gap-[30px] items-start w-full snap-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {filteredProducts.map((product, i) => (
+              <Link
+                key={product.id}
+                to={`/patterns/${product.category}/${product.slug}`}
+                className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-[261px] snap-start hover:-translate-y-1 transition-all duration-200"
+              >
+                <div className="h-[236px] relative rounded-[20px] shrink-0 w-[260px]">
+                  <div className="absolute inset-0 pointer-events-none rounded-[20px]">
+                    <div className="absolute inset-0 rounded-[20px]" style={{ backgroundColor: CARD_COLORS[i % CARD_COLORS.length] }} />
+                    <div className="absolute inset-0 flex items-center justify-center rounded-[20px]">
+                      <span className="font-['Bingo_Action_Comic:Regular',sans-serif] text-[60px] text-white/30">{product.name.charAt(0)}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="font-['Figtree:Bold',sans-serif] font-bold leading-[1.5] text-[#8b52c5] text-[26px] text-center w-[261px]">
+                  {product.name}
+                </div>
+                <div className="font-['Avenir:Book',sans-serif] not-italic leading-[1.6] text-[#3f3f3f] text-[18px] text-center w-[261px]">
+                  {product.shortDescription}
+                </div>
+                <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#8b52c5] text-[20px]">
+                  {product.isFree ? 'FREE' : `$${product.price.toFixed(2)}`}
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
+            <div className="flex-none rotate-180">
+              <div className="h-[40px] relative w-[20px]">
+                <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
+                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
+                    <path d={svgPaths.p1ad98580} stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

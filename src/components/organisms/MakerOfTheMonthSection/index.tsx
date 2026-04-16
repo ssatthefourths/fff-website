@@ -6,6 +6,9 @@ import imgScreenshot20240311At1204 from 'figma:asset/a68f87b1b02b49aea545440ae37
 import imgScreenshot20240311At1205 from 'figma:asset/f704291322bd77ffa3c361b50df9a87f66c6db7b.png';
 import imgUntitledDesign563 from 'figma:asset/f4e5f466ccd0fafd0b969fb06c776feae7507b11.png';
 import imgUntitledDesign561 from 'figma:asset/c04939546f5c2f4cdcde698bf0467c0bdec3e6da.png';
+import { makers } from '../../../data/makers';
+
+const MAKER_IMAGES = [imgScreenshot20240311At1204, imgScreenshot20240311At1205, imgUntitledDesign563, imgUntitledDesign561];
 
 function StuffingIllustration() {
   return (
@@ -73,7 +76,65 @@ function Title1() {
   );
 }
 
-function Frame18() {
+function MakerCard({ name, patternName, imgSrc }: { name: string; patternName: string; imgSrc: string }) {
+  return (
+    <div className="flex flex-row items-center self-stretch snap-start shrink-0">
+      <div className="bg-white h-full relative rounded-[20px] w-[300px]">
+        <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
+        <div className="flex flex-col items-center size-full">
+          <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
+            <div className="aspect-square relative rounded-[5px] shrink-0 w-full overflow-hidden">
+              <img alt={name} className="absolute inset-0 max-w-none object-cover size-full" src={imgSrc} />
+            </div>
+            <div className="content-stretch flex flex-col gap-[8px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-[26px] text-center w-full">
+              <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[1.4]">{name}</p>
+              </div>
+              <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[1.4]">{patternName}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ContentSideScroller1() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
+
+  return (
+    <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0 w-full" data-name="CONTENT SIDE SCROLLER">
+      <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll left">
+        <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
+          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
+            <path d={svgPaths.p1ad98580} stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
+          </svg>
+        </div>
+      </button>
+      <div ref={scrollRef} className="flex gap-[20px] overflow-x-auto scroll-smooth snap-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0">
+        {makers.map((maker, i) => (
+          <MakerCard key={maker.id} name={maker.name} patternName={maker.patternName} imgSrc={MAKER_IMAGES[i % MAKER_IMAGES.length]} />
+        ))}
+      </div>
+      <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
+        <div className="flex-none rotate-180">
+          <div className="h-[40px] relative w-[20px]">
+            <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
+                <path d={svgPaths.p1ad98580} stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  );
+}
+
+function _Unused_OriginalFrame18() {
   return (
     <div className="content-stretch flex flex-col gap-[8px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-[26px] text-center w-full">
       <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -125,91 +186,7 @@ function Frame21() {
   );
 }
 
-function ContentSideScroller1() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
-
-  return (
-    <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0 w-full" data-name="CONTENT SIDE SCROLLER">
-      <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" data-name="ARROW LEFT" aria-label="Scroll left">
-        <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
-            <path d={svgPaths.p1ad98580} id="ARROW LEFT" stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
-          </svg>
-        </div>
-      </button>
-      <div ref={scrollRef} className="flex gap-[20px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0">
-      <div className="flex flex-row items-center self-stretch snap-start">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[300px]" data-name="CARD 1">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
-              <div className="aspect-[280/280] relative rounded-[5px] shrink-0 w-full" data-name="Screenshot 2024-03-11 at 12.01">
-                <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-                  <img alt="" className="absolute h-[133.79%] left-0 max-w-none top-[-25.38%] w-[125.26%]" src={imgScreenshot20240311At1204} />
-                </div>
-              </div>
-              <Frame18 />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row items-center self-stretch">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[300px]" data-name="CARD 2">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
-              <div className="aspect-[280/280] relative rounded-[5px] shrink-0 w-full" data-name="Screenshot 2024-03-11 at 12.01">
-                <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-                  <img alt="" className="absolute h-[142.1%] left-0 max-w-none top-[-36.05%] w-full" src={imgScreenshot20240311At1205} />
-                </div>
-              </div>
-              <Frame19 />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row items-center self-stretch">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[300px]" data-name="CARD 3">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
-              <div className="aspect-[280/280] relative rounded-[5px] shrink-0 w-full" data-name="Screenshot 2024-03-11 at 12.01">
-                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[5px] size-full" src={imgUntitledDesign563} />
-              </div>
-              <Frame20 />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row items-center self-stretch">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[300px]" data-name="CARD 4">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
-              <div className="aspect-[280/280] relative rounded-[5px] shrink-0 w-full" data-name="Screenshot 2024-03-11 at 12.01">
-                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[5px] size-full" src={imgUntitledDesign561} />
-              </div>
-              <Frame21 />
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
-        <div className="flex-none rotate-180">
-          <div className="h-[40px] relative w-[20px]" data-name="ARROW RIGHT">
-            <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
-                <path d={svgPaths.p1ad98580} id="RIGHT ARROW" stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </button>
-    </div>
-  );
-}
+/* Old hardcoded ContentSideScroller1 removed — now dynamic above */
 
 function Column() {
   return (

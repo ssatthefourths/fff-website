@@ -116,7 +116,7 @@ function LeftContent() {
 function SubTitle1() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full lg:w-[574px]" data-name="SUB TITLE">
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#3f3f3f] text-[26px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis, tellus ac consequat tempus. `}</p>
+      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#3f3f3f] text-[26px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>{`I'm an Australian soft toy designer on a mission to help YOU make the cutest soft toys EVER! Whether you're a beginner or experienced sewer, my patterns make it easy and fun.`}</p>
     </div>
   );
 }

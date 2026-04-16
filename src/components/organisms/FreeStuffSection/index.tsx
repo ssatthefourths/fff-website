@@ -11,7 +11,7 @@ function Title() {
   return (
     <div className="content-stretch flex flex-col gap-[20px] items-center relative shrink-0 text-[#3f3f3f] text-center" data-name="TITLE">
       <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[clamp(36px,5vw,70px)] text-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-full max-w-[954px]">Love Free Stuff? There's loads to get you started!</p>
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[clamp(18px,2.5vw,26px)] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis, tellus ac consequat tempus, nunc odio consequat quam, ultricies elementum urna nulla et purus. `}</p>
+      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[clamp(18px,2.5vw,26px)] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Get started with FREE patterns, video tutorials, and a toy-making email course. Everything you need to begin your soft toy sewing journey — no experience required!`}</p>
     </div>
   );
 }
