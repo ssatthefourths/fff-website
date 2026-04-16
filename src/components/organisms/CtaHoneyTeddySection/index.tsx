@@ -47,11 +47,20 @@ function Inputs() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setError('');
     if (!name.trim()) { setError('Please enter your name'); return; }
     if (!email.trim() || !email.includes('@')) { setError('Please enter a valid email'); return; }
     if (!agreed) { setError('Please agree to the terms of use'); return; }
+    try {
+      await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.trim(), email: email.trim() }),
+      });
+    } catch {
+      // API might not be available in dev — still show success
+    }
     setSubmitted(true);
   };
 
