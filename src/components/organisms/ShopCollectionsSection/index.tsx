@@ -30,7 +30,7 @@ function ClipPathGroup7() {
 
 function HeartBgTopRightNew() {
   return (
-    <div className="hidden lg:block absolute inset-[22.19%_0_54.43%_76.67%] overflow-clip" data-name="HEART BG TOP RIGHT NEW">
+    <div className="hidden lg:block absolute top-[235px] right-0 w-[23.33%] overflow-clip" data-name="HEART BG TOP RIGHT NEW">
       <ClipPathGroup7 />
     </div>
   );
@@ -194,7 +194,7 @@ function Drawers() {
 
 function Container1() {
   return (
-    <div className="relative lg:absolute content-stretch flex flex-col gap-12 lg:gap-[103px] inset-auto lg:inset-[6.53%_0_0_0] items-center pb-16 lg:pb-[150px] pt-16 lg:pt-[112px] px-4 sm:px-6 md:px-10 lg:px-[50px] max-w-[1400px] mx-auto" data-name="CONTAINER">
+    <div className="content-stretch flex flex-col gap-12 lg:gap-[103px] items-center pb-16 lg:pb-[150px] pt-16 lg:pt-[112px] px-4 sm:px-6 md:px-10 lg:px-[50px] max-w-[1440px] mx-auto" data-name="CONTAINER">
       <Text2 />
       <Drawers />
     </div>
@@ -258,7 +258,7 @@ function ClipPathGroup9() {
 
 function Expression() {
   return (
-    <div className="hidden lg:block absolute inset-[82.61%_21.25%_10.39%_72.57%] overflow-clip" data-name="EXPRESSION">
+    <div className="hidden lg:block absolute bottom-[156px] right-[306px] w-[89px] h-[104px] overflow-clip" data-name="EXPRESSION">
       <ClipPathGroup9 />
     </div>
   );
@@ -302,7 +302,7 @@ function ClipPathGroup10() {
 
 function Stuffing() {
   return (
-    <div className="hidden lg:block absolute inset-[87.28%_2.15%_3.13%_82.22%] overflow-clip" data-name="STUFFING">
+    <div className="hidden lg:block absolute bottom-[47px] right-[31px] w-[225px] h-[144px] overflow-clip" data-name="STUFFING">
       <ClipPathGroup10 />
     </div>
   );
@@ -310,40 +310,45 @@ function Stuffing() {
 
 export function ShopCollectionsSection() {
   return (
-    <div className="relative h-auto lg:h-[1501px] w-full overflow-x-clip" data-name="SHOP COLLECTIONS SECTION">
-      <div className="absolute bg-[#bbd148] inset-[6.53%_0_0_0]" data-name="SECTION BG" />
-      <HeartBgTopRightNew />
-      <Container1 />
-      <div className="absolute flex inset-[0_0_93.47%_0] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+    <div className="relative w-full overflow-x-clip" data-name="SHOP COLLECTIONS SECTION">
+      {/* Section divider: white/cream above → yellow-green below */}
+      <div className="relative w-full h-[98px] overflow-visible">
+        <div className="absolute inset-0 -rotate-180 -scale-x-100">
           <div className="relative size-full" data-name="SECTION DIVIDER">
             <div className="absolute inset-[16.55%_0_0_0]">
               <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 81.8235">
-                <path d={svgPaths.pf37eb00} fill="var(--fill-0, #FFFDF3)" id="Vector 233" />
+                <path d={svgPaths.pf37eb00} fill="var(--fill-0, #FFFDF3)" />
               </svg>
             </div>
             <div className="absolute inset-[0_0_13.69%_0]">
               <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 84.6308">
-                <path d={svgPaths.p18cf2a00} fill="var(--fill-0, #BBD148)" id="Vector 234" />
+                <path d={svgPaths.p18cf2a00} fill="var(--fill-0, #BBD148)" />
               </svg>
             </div>
             <div className="absolute inset-[2.27%_0_25.93%_0]">
               <div className="absolute inset-[-2.13%_0]">
                 <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440.61 73.4006">
-                  <path d={svgPaths.p15608fe0} id="Vector 235" stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="3" />
+                  <path d={svgPaths.p15608fe0} stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="3" />
                 </svg>
-              </div>
-            </div>
-            <div className="absolute flex inset-[-44.82%_80.14%_-19.38%_6.25%] items-center justify-center" style={{ containerType: "size" }}>
-              <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
-                <Illustration />
               </div>
             </div>
           </div>
         </div>
+        {/* Illustration overflows upward from divider */}
+        <div className="hidden lg:flex absolute w-[196px] h-[161px] left-[90px] top-[-44px] items-center justify-center" style={{ containerType: "size" }}>
+          <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+            <Illustration />
+          </div>
+        </div>
       </div>
-      <Expression />
-      <Stuffing />
+
+      {/* Yellow-green content area */}
+      <div className="relative bg-[#bbd148]">
+        <HeartBgTopRightNew />
+        <Container1 />
+        <Expression />
+        <Stuffing />
+      </div>
     </div>
   );
 }

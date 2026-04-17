@@ -26,16 +26,48 @@ function ClipPathGroup11() {
 
 function ArrowSwirl1() {
   return (
-    <div className="hidden lg:block absolute inset-[55.93%_21.59%_10.17%_70.77%] overflow-clip" data-name="ARROW SWIRL">
+    <div className="hidden lg:block absolute bottom-[42px] right-[310px] w-[110px] h-[140px] overflow-clip pointer-events-none" data-name="ARROW SWIRL">
       <ClipPathGroup11 />
     </div>
   );
 }
 
-function Text3() {
+function Group12() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative w-full" data-name="TEXT">
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#fffdf3] text-[clamp(16px,2vw,26px)] w-full lg:w-[1024px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Sign up to my newsletter and I'll send you my best toy-making tips & special offers too!`}</p>
+    <div className="absolute inset-[6.28%_1.79%_7.35%_0.77%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-1.362px_-8.787px] mask-size-[176.699px_139.348px]" style={{ maskImage: `url('${imgGroup12}')` }} data-name="Group">
+      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 172.476 120.922">
+        <g id="Group">
+          <path d={svgPaths.p6040f00} fill="var(--fill-0, #FFFDF3)" id="Vector" />
+          <path d={svgPaths.p8b12e40} fill="var(--fill-0, #FFFDF3)" id="Vector_2" />
+          <path d={svgPaths.p10245100} fill="var(--fill-0, #FFFDF3)" id="Vector_3" />
+          <path d={svgPaths.p1e4c180} fill="var(--fill-0, #FFFDF3)" id="Vector_4" />
+          <path d={svgPaths.p341dc980} fill="var(--fill-0, #FFFDF3)" id="Vector_5" />
+          <path d={svgPaths.p3625ca80} fill="var(--fill-0, #FFFDF3)" id="Vector_6" />
+          <path d={svgPaths.p2cf71a00} fill="var(--fill-0, #FFFDF3)" id="Vector_7" />
+          <path d={svgPaths.p24066a00} fill="var(--fill-0, #FFFDF3)" id="Vector_8" />
+          <path d={svgPaths.p3dc5bcb0} fill="var(--fill-0, #FFFDF3)" id="Vector_9" />
+          <path d={svgPaths.p38a52880} fill="var(--fill-0, #FFFDF3)" id="Vector_10" />
+          <path d={svgPaths.p2afa8a00} fill="var(--fill-0, #FFFDF3)" id="Vector_11" />
+          <path d={svgPaths.p1d7a2d00} fill="var(--fill-0, #FFFDF3)" id="Vector_12" />
+          <path d={svgPaths.p3f882df0} fill="var(--fill-0, #FFFDF3)" id="Vector_13" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function ClipPathGroup12() {
+  return (
+    <div className="absolute contents inset-[0_0.17%_0.47%_0]" data-name="Clip path group">
+      <Group12 />
+    </div>
+  );
+}
+
+function Stars() {
+  return (
+    <div className="hidden lg:block absolute top-[12px] right-[355px] w-[168px] h-[140px] overflow-clip pointer-events-none" data-name="STARS">
+      <ClipPathGroup12 />
     </div>
   );
 }
@@ -75,7 +107,6 @@ function Inputs() {
 
   return (
     <div className="flex flex-col gap-[20px] w-full" data-name="INPUTS">
-      {/* Name + Email row */}
       <div className="flex flex-col sm:flex-row gap-[25px] w-full">
         <input
           type="text"
@@ -94,7 +125,6 @@ function Inputs() {
           style={{ fontVariationSettings: "'wdth' 100" }}
         />
       </div>
-      {/* Agree checkbox + Submit button row */}
       <div className="flex flex-col sm:flex-row gap-4 lg:gap-[30px] items-center w-full">
         <label className="flex gap-[12px] items-center shrink-0 cursor-pointer">
           <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="size-[24px] accent-[#f6d75a] rounded-[5px] shrink-0" />
@@ -114,65 +144,20 @@ function Inputs() {
   );
 }
 
-function CtaContent() {
-  return (
-    <div className="relative px-4 py-12 sm:px-6 md:px-8 md:py-14 lg:absolute lg:px-0 lg:py-0 content-stretch flex flex-col gap-[25px] lg:inset-[18.89%_30.68%_10.9%_4.08%] items-start justify-center max-w-[1400px] mx-auto" data-name="CTA CONTENT">
-      <p className="font-['Magic_Honey:Regular',sans-serif] leading-[1.4] not-italic relative shrink-0 text-[#fffdf3] text-[clamp(28px,4vw,45px)] w-full lg:w-[931px]">Get my Honey Teddy pattern for FREE!</p>
-      <Text3 />
-      <Inputs />
-    </div>
-  );
-}
-
-function Group12() {
-  return (
-    <div className="absolute inset-[6.28%_1.79%_7.35%_0.77%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-1.362px_-8.787px] mask-size-[176.699px_139.348px]" style={{ maskImage: `url('${imgGroup12}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 172.476 120.922">
-        <g id="Group">
-          <path d={svgPaths.p6040f00} fill="var(--fill-0, #FFFDF3)" id="Vector" />
-          <path d={svgPaths.p8b12e40} fill="var(--fill-0, #FFFDF3)" id="Vector_2" />
-          <path d={svgPaths.p10245100} fill="var(--fill-0, #FFFDF3)" id="Vector_3" />
-          <path d={svgPaths.p1e4c180} fill="var(--fill-0, #FFFDF3)" id="Vector_4" />
-          <path d={svgPaths.p341dc980} fill="var(--fill-0, #FFFDF3)" id="Vector_5" />
-          <path d={svgPaths.p3625ca80} fill="var(--fill-0, #FFFDF3)" id="Vector_6" />
-          <path d={svgPaths.p2cf71a00} fill="var(--fill-0, #FFFDF3)" id="Vector_7" />
-          <path d={svgPaths.p24066a00} fill="var(--fill-0, #FFFDF3)" id="Vector_8" />
-          <path d={svgPaths.p3dc5bcb0} fill="var(--fill-0, #FFFDF3)" id="Vector_9" />
-          <path d={svgPaths.p38a52880} fill="var(--fill-0, #FFFDF3)" id="Vector_10" />
-          <path d={svgPaths.p2afa8a00} fill="var(--fill-0, #FFFDF3)" id="Vector_11" />
-          <path d={svgPaths.p1d7a2d00} fill="var(--fill-0, #FFFDF3)" id="Vector_12" />
-          <path d={svgPaths.p3f882df0} fill="var(--fill-0, #FFFDF3)" id="Vector_13" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup12() {
-  return (
-    <div className="absolute contents inset-[0_0.17%_0.47%_0]" data-name="Clip path group">
-      <Group12 />
-    </div>
-  );
-}
-
-function Stars() {
-  return (
-    <div className="hidden lg:block absolute inset-[2.91%_24.75%_63.2%_63.59%] overflow-clip" data-name="STARS">
-      <ClipPathGroup12 />
-    </div>
-  );
-}
-
 export function CtaHoneyTeddySection() {
   return (
-    <div className="relative h-auto min-h-[300px] lg:h-[413px] w-full mt-[-30px] bg-[#8b52c5] lg:bg-transparent" data-name="CTA HONEY TEDDY SECTION">
-      <div className="absolute bg-[#8b52c5] inset-[7.26%_0_0_0]" data-name="BG" />
-      <ArrowSwirl1 />
-      <CtaContent />
-      <Stars />
-      <div className="hidden lg:block absolute aspect-[2404/1656] left-[70.7%] right-0 top-[-20%] z-10" data-name="Honey-Teddy-Bear 1">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgHoneyTeddyBear1} />
+    <div className="relative w-full overflow-x-clip bg-[#8b52c5]" data-name="CTA HONEY TEDDY SECTION">
+      <div className="relative max-w-[1440px] mx-auto px-4 py-12 sm:px-6 md:px-8 lg:px-[50px] lg:py-[50px] flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-0">
+        <ArrowSwirl1 />
+        <Stars />
+        <div className="flex flex-col gap-[25px] items-start justify-center w-full lg:flex-1 relative z-[1]" data-name="CTA CONTENT">
+          <p className="font-['Magic_Honey:Regular',sans-serif] leading-[1.4] not-italic relative shrink-0 text-[#fffdf3] text-[clamp(28px,4vw,45px)] w-full">Get my Honey Teddy pattern for FREE!</p>
+          <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#fffdf3] text-[clamp(16px,2vw,26px)] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>{`Sign up to my newsletter and I'll send you my best toy-making tips & special offers too!`}</p>
+          <Inputs />
+        </div>
+        <div className="hidden lg:block relative shrink-0 w-[380px] lg:-mt-[100px] lg:-mb-[20px]" data-name="HONEY TEDDY BEAR">
+          <img alt="" className="w-full h-auto object-contain pointer-events-none" src={imgHoneyTeddyBear1} />
+        </div>
       </div>
     </div>
   );

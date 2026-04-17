@@ -29,7 +29,7 @@ function ClipPathGroup() {
 
 function BgPatch() {
   return (
-    <div className="hidden lg:block absolute inset-[4.59%_0_47.5%_72.5%] overflow-clip" data-name="BG PATCH">
+    <div className="hidden lg:block absolute top-[48px] right-0 w-[27.5%] overflow-clip" data-name="BG PATCH">
       <ClipPathGroup />
     </div>
   );
@@ -116,7 +116,7 @@ function BlogButton() {
 
 function BlogContent() {
   return (
-    <div className="relative lg:absolute content-stretch flex flex-col gap-[56px] lg:inset-[0_0.07%_0_0] items-center justify-center px-4 py-12 sm:px-6 md:px-12 md:py-16 lg:px-[100px] lg:py-[140px] max-w-[1400px] mx-auto" data-name="BLOG CONTENT">
+    <div className="relative content-stretch flex flex-col gap-[56px] items-center justify-center px-4 py-12 sm:px-6 md:px-12 md:py-16 lg:px-[100px] lg:py-[140px] max-w-[1440px] mx-auto" data-name="BLOG CONTENT">
       <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[#3f3f3f] text-[clamp(36px,5vw,70px)] text-center w-full max-w-[1121px]">Read Our Blog</p>
       <BlogCards />
       <BlogButton />
@@ -150,7 +150,7 @@ function ClipPathGroup1() {
 
 function Thimble() {
   return (
-    <div className="hidden lg:block absolute inset-[80.14%_2.01%_3.79%_84.38%] overflow-clip" data-name="THIMBLE">
+    <div className="hidden lg:block absolute bottom-[40px] right-[29px] w-[196px] h-[168px] overflow-clip" data-name="THIMBLE">
       <ClipPathGroup1 />
     </div>
   );
@@ -158,7 +158,7 @@ function Thimble() {
 
 export function BlogSection() {
   return (
-    <div className="relative h-auto lg:h-[1047px] w-full overflow-x-clip" data-name="BLOG SECTION">
+    <div className="relative w-full overflow-x-clip" data-name="BLOG SECTION">
       <BgPatch />
       <BlogContent />
       <Thimble />

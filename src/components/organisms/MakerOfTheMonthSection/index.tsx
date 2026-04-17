@@ -12,7 +12,7 @@ const MAKER_IMAGES = [imgScreenshot20240311At1204, imgScreenshot20240311At1205, 
 
 function StuffingIllustration() {
   return (
-    <div className="hidden lg:block absolute inset-[85.44%_4.06%_0_82.11%]" data-name="STUFFING ILLUSTRATION">
+    <div className="hidden lg:block absolute bottom-0 right-[4%] w-[225px] h-[144px]" data-name="STUFFING ILLUSTRATION">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 225 144">
         <g clipPath="url(#clip0_1_1267)" id="STUFFING ILLUSTRATION">
           <path d={svgPaths.p46e2700} fill="var(--fill-0, #F3726D)" id="Vector" />
@@ -195,7 +195,7 @@ function Column() {
       <ContentSideScroller1 />
       <Link to="/blog" className="bg-[#bbd148] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="Button">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-          <p className="leading-[normal]">find out who the winner is!</p>
+          <p className="leading-[normal]">Find out who the winner is,</p>
         </div>
       </Link>
     </div>
@@ -204,7 +204,7 @@ function Column() {
 
 function Content2() {
   return (
-    <div className="relative px-4 py-12 sm:px-6 md:px-8 lg:px-0 lg:py-0 lg:absolute content-stretch flex flex-col gap-[50px] lg:inset-[0_0_15.47%_10.99%] items-center max-w-[1400px] mx-auto" data-name="CONTENT">
+    <div className="relative px-4 py-12 sm:px-6 md:px-8 lg:px-[50px] lg:py-[100px] content-stretch flex flex-col gap-[50px] items-center max-w-[1440px] mx-auto w-full" data-name="CONTENT">
       <Column />
       <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[0] relative shrink-0 text-[#8b52c5] text-[0px] text-center w-full max-w-[912px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         <span className="leading-[1.4] text-[#3f3f3f] text-[26px]">{`Want to enter the competition to win a FREE Funky Friends Factory pattern ? Make something and tag us `}</span>
@@ -221,9 +221,9 @@ function Content2() {
 
 export function MakerOfTheMonthSection() {
   return (
-    <div className="relative h-auto lg:h-[989px] w-full overflow-x-clip" data-name="MAKER OF THE MONTH SECTION">
+    <div className="relative w-full overflow-x-clip" data-name="MAKER OF THE MONTH SECTION">
       <StuffingIllustration />
-      <div className="hidden lg:flex absolute inset-[60.47%_57.74%_25.19%_32.2%] items-center justify-center" style={{ containerType: "size" }}>
+      <div className="hidden lg:flex absolute bottom-[280px] left-[33%] w-[145px] h-[142px] items-center justify-center" style={{ containerType: "size" }}>
         <div className="flex-none h-[hypot(-39.8764cqw,36.4414cqh)] rotate-[42.5deg] skew-x-[-9.11deg] w-[hypot(60.1236cqw,63.5586cqh)]">
           <div className="relative size-full" data-name="ARROW SWIRL">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 133.513 83.2882">
@@ -232,7 +232,7 @@ export function MakerOfTheMonthSection() {
           </div>
         </div>
       </div>
-      <div className="hidden lg:flex absolute inset-[21.92%_65.24%_20.03%_0] items-center justify-center" style={{ containerType: "size" }}>
+      <div className="hidden lg:flex absolute top-[180px] left-0 w-[32%] max-w-[480px] aspect-[463/475] items-center justify-center" style={{ containerType: "size" }}>
         <div className="flex-none h-[hypot(-20.5743cqw,-80.2501cqh)] rotate-[165.83deg] w-[hypot(-79.4257cqw,19.7499cqh)]">
           <BgPatch1 />
         </div>

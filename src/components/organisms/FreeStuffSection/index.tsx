@@ -30,8 +30,8 @@ function ContentSideScroller() {
         </div>
       </button>
       <div ref={scrollRef} className="flex gap-[30px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0">
-      <div className="flex flex-row items-center self-stretch">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[399px]" data-name="CARD 1">
+      <div className="flex flex-row items-center self-stretch shrink-0">
+        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 1">
           <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
           <div className="flex flex-col items-center size-full">
             <div className="content-stretch flex flex-col gap-[27px] items-center p-[30px] relative size-full">
@@ -46,8 +46,8 @@ function ContentSideScroller() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center self-stretch">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[399px]" data-name="CARD 2">
+      <div className="flex flex-row items-center self-stretch shrink-0">
+        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 2">
           <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
           <div className="flex flex-col items-center size-full">
             <div className="content-stretch flex flex-col gap-[27px] items-center p-[30px] relative size-full">
@@ -62,8 +62,8 @@ function ContentSideScroller() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center self-stretch">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-full sm:w-[399px]" data-name="CARD 3">
+      <div className="flex flex-row items-center self-stretch shrink-0">
+        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 3">
           <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
           <div className="flex flex-col items-center size-full">
             <div className="content-stretch flex flex-col gap-[27px] items-center p-[30px] relative size-full">
@@ -96,8 +96,8 @@ function ContentSideScroller() {
 
 function Content1() {
   return (
-    <div className="relative lg:absolute bg-[#dde8a3] w-full lg:inset-[0_0_9.44%_0]" data-name="CONTENT">
-      <div className="content-stretch flex flex-col gap-[75px] items-center px-4 py-12 sm:px-6 md:px-10 md:py-16 lg:px-[50px] lg:py-[140px] max-w-[1400px] mx-auto">
+    <div className="relative bg-[#dde8a3] w-full" data-name="CONTENT">
+      <div className="content-stretch flex flex-col gap-[75px] items-center px-4 py-12 sm:px-6 md:px-10 md:py-16 lg:px-[50px] lg:py-[140px] max-w-[1440px] mx-auto">
         <Title />
         <ContentSideScroller />
       </div>
@@ -131,7 +131,7 @@ function ClipPathGroup2() {
 
 function ShapeDivider() {
   return (
-    <div className="hidden lg:block absolute inset-[90.14%_0_2.52%_0] overflow-clip" data-name="SHAPE DIVIDER">
+    <div className="relative w-full h-[104px] overflow-hidden" data-name="SHAPE DIVIDER">
       <ClipPathGroup2 />
     </div>
   );
@@ -161,7 +161,7 @@ function ClipPathGroup3() {
 
 function Scissors() {
   return (
-    <div className="hidden lg:block absolute inset-[86.57%_74.72%_0_5.21%] overflow-clip" data-name="SCISSORS">
+    <div className="hidden lg:block absolute bottom-[104px] left-[75px] w-[289px] overflow-clip" data-name="SCISSORS">
       <ClipPathGroup3 />
     </div>
   );
@@ -169,7 +169,7 @@ function Scissors() {
 
 export function FreeStuffSection() {
   return (
-    <div className="relative h-auto lg:h-[1430px] w-full overflow-x-clip" data-name="FREE STUFF SECTION">
+    <div className="relative w-full overflow-x-clip" data-name="FREE STUFF SECTION">
       <Content1 />
       <ShapeDivider />
       <Scissors />

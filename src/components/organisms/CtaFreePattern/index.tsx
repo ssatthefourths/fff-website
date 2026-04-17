@@ -15,8 +15,8 @@ function Socials() {
 
 function Content3() {
   return (
-    <div className="relative lg:absolute bg-[#bbd148] w-full lg:inset-[0_0.07%_24.76%_0]" data-name="CONTENT">
-      <div className="content-stretch flex flex-col gap-[30px] items-center justify-center px-4 py-12 sm:px-6 md:px-10 lg:px-[40px] lg:py-[60px] max-w-[1400px] mx-auto">
+    <div className="relative bg-[#bbd148] w-full" data-name="CONTENT">
+      <div className="content-stretch flex flex-col gap-[30px] items-center justify-center px-4 py-12 sm:px-6 md:px-10 lg:px-[40px] lg:py-[60px] max-w-[1440px] mx-auto">
       <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-[1.1] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[clamp(28px,4vw,45px)] text-center w-[min-content]">Want to get 5 FREE Funky Friends Factory Patterns for free?</p>
       <div className="font-['Roboto:Regular',sans-serif] font-normal leading-[0] relative shrink-0 text-[#3f3f3f] text-[0px] text-center w-full max-w-[1158px] whitespace-pre-wrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="mb-0 text-[26px]">
@@ -39,12 +39,12 @@ function Content3() {
 
 function Divider() {
   return (
-    <div className="hidden lg:block absolute inset-[70.95%_0_17.94%_0.07%]" data-name="DIVIDER">
+    <div className="relative w-full h-[70px] overflow-hidden" data-name="DIVIDER">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 70">
-        <g clipPath="url(#clip0_1_1395)" id="DIVIDER">
-          <path d={svgPaths.p29812680} fill="var(--fill-0, #BBD148)" id="Vector" />
-          <path d={svgPaths.p1335ac80} fill="var(--fill-0, #FFFDF3)" id="Vector_2" />
-          <path d={svgPaths.p1cbd9c00} id="Vector_3" stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="4" />
+        <g clipPath="url(#clip0_1_1395)">
+          <path d={svgPaths.p29812680} fill="var(--fill-0, #BBD148)" />
+          <path d={svgPaths.p1335ac80} fill="var(--fill-0, #FFFDF3)" />
+          <path d={svgPaths.p1cbd9c00} stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="4" />
         </g>
         <defs><clipPath id="clip0_1_1395"><rect fill="white" height="70" width="1440" /></clipPath></defs>
       </svg>
@@ -82,7 +82,7 @@ function ClipPathGroup4() {
 
 function StarsIllustration() {
   return (
-    <div className="hidden lg:block absolute inset-[49.21%_2.5%_36.19%_89.1%] overflow-clip" data-name="STARS ILLUSTRATION">
+    <div className="hidden lg:block absolute bottom-[230px] right-[36px] w-[121px] h-[92px] overflow-clip" data-name="STARS ILLUSTRATION">
       <ClipPathGroup4 />
     </div>
   );
@@ -107,7 +107,7 @@ function ClipPathGroup5() {
 
 function Thimble1() {
   return (
-    <div className="hidden lg:block absolute inset-[72.06%_83.76%_0_4.79%] overflow-clip" data-name="THIMBLE">
+    <div className="hidden lg:block absolute bottom-0 left-[69px] w-[165px] h-[176px] overflow-clip" data-name="THIMBLE">
       <ClipPathGroup5 />
     </div>
   );
@@ -115,7 +115,7 @@ function Thimble1() {
 
 export function CtaFreePattern() {
   return (
-    <div className="relative h-auto lg:h-[630px] w-full overflow-x-clip" data-name="CTA FREE PATTERN">
+    <div className="relative w-full overflow-x-clip" data-name="CTA FREE PATTERN">
       <Content3 />
       <Divider />
       <StarsIllustration />
