@@ -25,7 +25,7 @@ export function ReviewsSection() {
   const next = () => setIndex((i) => (i + 1) % reviews.length);
 
   return (
-    <div className="relative content-stretch flex gap-4 sm:gap-8 lg:gap-[60px] items-center justify-center px-4 py-12 sm:px-6 md:px-12 md:py-16 lg:px-[80px] lg:py-[120px] w-full overflow-x-clip max-w-[1440px] mx-auto" data-name="REVIEWS SECTION">
+    <div className="relative content-stretch flex gap-4 sm:gap-8 lg:gap-[60px] items-center justify-center px-4 py-12 sm:px-6 md:px-10 md:py-16 lg:px-[50px] lg:py-[120px] w-full overflow-x-clip max-w-[1440px] mx-auto" data-name="REVIEWS SECTION">
       {/* LEFT ARROW */}
       <button onClick={prev} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" data-name="LEFT ARROW" aria-label="Previous review">
         <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">

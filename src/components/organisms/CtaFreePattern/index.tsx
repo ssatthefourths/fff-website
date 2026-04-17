@@ -1,6 +1,8 @@
 import React from 'react';
 import svgPaths from '../../../assets/svgPaths';
-import { imgGroup4, imgGroup5 } from '../../../imports/svg-9news';
+import { WaveDivider } from '../../ui/WaveDivider';
+import { imgGroup4 } from '../../../imports/svg-9news';
+import { Illustration } from '../../ui/Illustration';
 
 function Socials() {
   return (
@@ -16,7 +18,7 @@ function Socials() {
 function Content3() {
   return (
     <div className="relative bg-[#bbd148] w-full" data-name="CONTENT">
-      <div className="content-stretch flex flex-col gap-[30px] items-center justify-center px-4 py-12 sm:px-6 md:px-10 lg:px-[40px] lg:py-[60px] max-w-[1440px] mx-auto">
+      <div className="content-stretch flex flex-col gap-[30px] items-center justify-center px-4 py-12 sm:px-6 md:px-10 lg:px-[50px] lg:py-[60px] max-w-[1440px] mx-auto">
       <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-[1.1] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[clamp(28px,4vw,45px)] text-center w-[min-content]">Want to get 5 FREE Funky Friends Factory Patterns for free?</p>
       <div className="font-['Roboto:Regular',sans-serif] font-normal leading-[0] relative shrink-0 text-[#3f3f3f] text-[0px] text-center w-full max-w-[1158px] whitespace-pre-wrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="mb-0 text-[26px]">
@@ -37,20 +39,6 @@ function Content3() {
   );
 }
 
-function Divider() {
-  return (
-    <div className="relative w-full h-[70px] overflow-hidden" data-name="DIVIDER">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 70">
-        <g clipPath="url(#clip0_1_1395)">
-          <path d={svgPaths.p29812680} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.p1335ac80} fill="var(--fill-0, #FFFDF3)" />
-          <path d={svgPaths.p1cbd9c00} stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="4" />
-        </g>
-        <defs><clipPath id="clip0_1_1395"><rect fill="white" height="70" width="1440" /></clipPath></defs>
-      </svg>
-    </div>
-  );
-}
 
 function Group4() {
   return (
@@ -88,27 +76,10 @@ function StarsIllustration() {
   );
 }
 
-function Group5() {
+function PinCushion() {
   return (
-    <div className="absolute inset-[0.01%_0.42%_0.25%_0] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[0px_-0.011px] mask-size-[164.28px_175.55px]" style={{ maskImage: `url('${imgGroup5}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 164.302 175.549">
-        <g id="Group">
-          <path d={svgPaths.p19357f80} fill="var(--fill-0, #8855BF)" id="Vector" />
-          <path d={svgPaths.p24275af2} fill="var(--fill-0, #8855BF)" id="Vector_2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup5() {
-  return (<div className="absolute contents inset-[0_0.44%_0.26%_0]" data-name="Clip path group"><Group5 /></div>);
-}
-
-function Thimble1() {
-  return (
-    <div className="hidden lg:block absolute bottom-0 left-[69px] w-[165px] h-[176px] overflow-clip" data-name="THIMBLE">
-      <ClipPathGroup5 />
+    <div className="hidden lg:block absolute bottom-0 left-[69px] w-[165px] h-[176px]" data-name="THIMBLE">
+      <Illustration type="pin-cushion" variant="green" />
     </div>
   );
 }
@@ -117,9 +88,9 @@ export function CtaFreePattern() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="CTA FREE PATTERN">
       <Content3 />
-      <Divider />
+      <WaveDivider topColor="#bbd148" bottomColor="#fffdf3" height={70} flipY />
       <StarsIllustration />
-      <Thimble1 />
+      <PinCushion />
     </div>
   );
 }

@@ -104,7 +104,7 @@ function ContentRight() {
 
 function Container() {
   return (
-    <div className="relative px-4 py-12 sm:px-6 md:px-12 lg:py-[60px] content-stretch flex flex-col lg:flex-row items-center justify-center lg:pl-[80px] lg:pr-[160px] max-w-[1440px] mx-auto" data-name="CONTAINER">
+    <div className="relative px-4 py-12 sm:px-6 md:px-10 lg:px-[50px] lg:py-[60px] content-stretch flex flex-col lg:flex-row items-center justify-center max-w-[1440px] mx-auto" data-name="CONTAINER">
       <ContentLeft />
       <ContentRight />
     </div>

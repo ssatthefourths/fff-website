@@ -1,4 +1,6 @@
 import React from 'react';
+import { WaveDivider } from '../../ui/WaveDivider';
+import { Illustration } from '../../ui/Illustration';
 import { useRef } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
@@ -13,34 +15,7 @@ const MAKER_IMAGES = [imgScreenshot20240311At1204, imgScreenshot20240311At1205, 
 function StuffingIllustration() {
   return (
     <div className="hidden lg:block absolute bottom-0 right-[4%] w-[225px] h-[144px]" data-name="STUFFING ILLUSTRATION">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 225 144">
-        <g clipPath="url(#clip0_1_1267)" id="STUFFING ILLUSTRATION">
-          <path d={svgPaths.p46e2700} fill="var(--fill-0, #F3726D)" id="Vector" />
-          <path d={svgPaths.p3ea0aa00} fill="var(--fill-0, #F3726D)" id="Vector_2" />
-          <path d={svgPaths.pbb7cd00} fill="var(--fill-0, #F3726D)" id="Vector_3" />
-          <path d={svgPaths.p24a99a00} fill="var(--fill-0, #F3726D)" id="Vector_4" />
-          <path d={svgPaths.p39e4fd00} fill="var(--fill-0, #F3726D)" id="Vector_5" />
-          <path d={svgPaths.p164061f0} fill="var(--fill-0, #F3726D)" id="Vector_6" />
-          <path d={svgPaths.p3bd52b00} fill="var(--fill-0, #F3726D)" id="Vector_7" />
-          <path d={svgPaths.p250fec00} fill="var(--fill-0, #F3726D)" id="Vector_8" />
-          <path d={svgPaths.p1dc7e980} fill="var(--fill-0, #F3726D)" id="Vector_9" />
-          <path d={svgPaths.p1795b980} fill="var(--fill-0, #F3726D)" id="Vector_10" />
-          <path d={svgPaths.p171d4600} fill="var(--fill-0, #F3726D)" id="Vector_11" />
-          <path d={svgPaths.p3af44280} fill="var(--fill-0, #F3726D)" id="Vector_12" />
-          <path d={svgPaths.p1fc2e871} fill="var(--fill-0, #F3726D)" id="Vector_13" />
-          <path d={svgPaths.p161b6300} fill="var(--fill-0, #F3726D)" id="Vector_14" />
-          <path d={svgPaths.p25114f00} fill="var(--fill-0, #F3726D)" id="Vector_15" />
-          <path d={svgPaths.p1e8c3000} fill="var(--fill-0, #F3726D)" id="Vector_16" />
-          <g id="Vector_17" />
-          <g id="Vector_18" />
-          <path d={svgPaths.pd669340} fill="var(--fill-0, #F3726D)" id="Vector_19" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1_1267">
-            <rect fill="white" height="144" width="225" />
-          </clipPath>
-        </defs>
-      </svg>
+      <Illustration type="stuffing" variant="purple" />
     </div>
   );
 }
@@ -238,6 +213,7 @@ export function MakerOfTheMonthSection() {
         </div>
       </div>
       <Content2 />
+      <WaveDivider topColor="#fffdf3" bottomColor="#dde8a3" height={90} />
     </div>
   );
 }

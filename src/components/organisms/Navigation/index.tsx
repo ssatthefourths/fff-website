@@ -36,74 +36,11 @@ const DEFAULT_RIGHT_LINKS: NavLink[] = [
 function FffMainLogo() {
   return (
     <Link to="/" className="h-[clamp(80px,10.42vw,150px)] relative shrink-0 w-[clamp(125px,16.32vw,235px)] block">
-      <svg
-        className="absolute block inset-0 size-full"
-        fill="none"
-        preserveAspectRatio="none"
-        viewBox="0 0 235 150"
-      >
-        <g clipPath="url(#clip-nav-logo)">
-          <path d={svgPaths.pfbfa400} fill="var(--fill-0, white)" />
-          <path d={svgPaths.pdbd4570} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p346d7b40} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p186aa200} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p72d9300} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p374d9280} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p3dabb600} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p1054e200} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p432e300} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p3a45d000} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p14079a00} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p2342e780} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p7fe00} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p20996200} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p3ea27600} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p2f1bee00} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p36082f50} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p2be58900} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p39c513c0} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p348c2c00} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p3d0f0a00} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p31d019f0} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.pd90ec00} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p3ef2df80} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p1bb83f70} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p36315100} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p2e41b900} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p330c54f0} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p3d379b00} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p37169590} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p3616ef40} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p2ab12340} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p1a9add00} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p7bba00} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p1619f400} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p272a0900} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p24f2b480} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p2d04bb80} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p250fd00} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.p161b3500} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.p270ac200} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.p19123f00} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.p18ea8e70} fill="var(--fill-0, #F6D75A)" />
-          <path d={svgPaths.p38c9c780} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.pc781880} fill="var(--fill-0, white)" />
-          <path d={svgPaths.p2f0cb400} fill="var(--fill-0, #F4EEFA)" />
-          <path d={svgPaths.p1c3e77f0} fill="var(--fill-0, #BBD148)" />
-          <path d={svgPaths.p8cc5c80} fill="var(--fill-0, #F4EEFA)" />
-          <path d={svgPaths.pe602300} fill="var(--fill-0, #F4EEFA)" />
-          <path d={svgPaths.p97a9a00} fill="var(--fill-0, #F4EEFA)" />
-          <path d={svgPaths.p1b219d00} fill="var(--fill-0, #F4EEFA)" />
-          <path d={svgPaths.pa842000} fill="var(--fill-0, #F4EEFA)" />
-          <path d={svgPaths.p791b180} fill="var(--fill-0, #8B52C5)" />
-          <path d={svgPaths.p1cd0d600} fill="var(--fill-0, #8B52C5)" />
-        </g>
-        <defs>
-          <clipPath id="clip-nav-logo">
-            <rect fill="white" height="150" width="235" />
-          </clipPath>
-        </defs>
-      </svg>
+      <img
+        src="/illustrations/Funky Friends Factory_RGB_Primary Logo_Purple.svg"
+        alt="Funky Friends Factory"
+        className="absolute block inset-0 size-full object-contain"
+      />
     </Link>
   );
 }

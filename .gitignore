@@ -26,6 +26,9 @@ npm-debug.log*
 # Screenshots (dev only)
 SCREENSHOTS/
 
+# Design assets (large binary files, not needed in repo)
+ASSETS/
+
 # Claude/MCP config (local dev)
 .claude/
 .mcp.json

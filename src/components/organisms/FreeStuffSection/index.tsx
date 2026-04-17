@@ -2,10 +2,11 @@ import React from 'react';
 import { useRef } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
+import { WaveDivider } from '../../ui/WaveDivider';
 import imgScreenshot20240311At1201 from 'figma:asset/960a23c45c6cc9ccd4981d84131d22dc14b255d4.png';
 import imgScreenshot20240311At1202 from 'figma:asset/a31414da72a96cfe72dc9096eb31f4505524a3a9.png';
 import imgScreenshot20240311At1203 from 'figma:asset/82be614aad6ba9573a49093da258451aa98c533e.png';
-import { imgGroup2, imgGroup3 } from '../../../imports/svg-9news';
+import { Illustration } from '../../ui/Illustration';
 
 function Title() {
   return (
@@ -105,64 +106,11 @@ function Content1() {
   );
 }
 
-function Group2() {
-  return (
-    <div className="absolute inset-[-1.95%_0_0_0] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[0px_-2px] mask-size-[100%_105px]" style={{ maskImage: `url('${imgGroup2}')` }} data-name="Group">
-      <div className="absolute inset-[-1.95%_0_0_0]">
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440.83 104.393">
-          <g id="Group">
-            <path d={svgPaths.p248b7500} fill="var(--fill-0, #DDE8A3)" id="Vector" />
-            <path d={svgPaths.p7242a00} fill="var(--fill-0, #FFFDF3)" id="Vector_2" />
-            <path d={svgPaths.p120c0000} id="Vector_3" stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="4" />
-          </g>
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function ClipPathGroup2() {
-  return (
-    <div className="absolute contents inset-0" data-name="Clip path group">
-      <Group2 />
-    </div>
-  );
-}
-
-function ShapeDivider() {
-  return (
-    <div className="relative w-full h-[104px] overflow-hidden" data-name="SHAPE DIVIDER">
-      <ClipPathGroup2 />
-    </div>
-  );
-}
-
-function Group3() {
-  return (
-    <div className="absolute inset-[19.3%_0.9%_20.8%_4.8%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-13.88px_-37.054px] mask-size-[288.262px_191.414px]" style={{ maskImage: `url('${imgGroup3}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 272.525 115.014">
-        <g id="Group">
-          <path d={svgPaths.p23dca880} fill="var(--fill-0, #8B52C5)" id="Vector" />
-          <path d={svgPaths.p2c6ea380} fill="var(--fill-0, #8B52C5)" id="Vector_2" />
-          <path d={svgPaths.p302b4400} fill="var(--fill-0, #8B52C5)" id="Vector_3" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup3() {
-  return (
-    <div className="absolute contents inset-[0_0.26%_0.31%_0]" data-name="Clip path group">
-      <Group3 />
-    </div>
-  );
-}
 
 function Scissors() {
   return (
-    <div className="hidden lg:block absolute bottom-[104px] left-[75px] w-[289px] overflow-clip" data-name="SCISSORS">
-      <ClipPathGroup3 />
+    <div className="hidden lg:block absolute bottom-[104px] left-[75px] w-[289px]" data-name="SCISSORS">
+      <Illustration type="scissors" variant="purple" />
     </div>
   );
 }
@@ -171,7 +119,7 @@ export function FreeStuffSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="FREE STUFF SECTION">
       <Content1 />
-      <ShapeDivider />
+      <WaveDivider topColor="#dde8a3" bottomColor="#fffdf3" height={104} flipY />
       <Scissors />
     </div>
   );

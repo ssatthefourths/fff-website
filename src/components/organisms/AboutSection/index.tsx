@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
+import { WaveDivider } from '../../ui/WaveDivider';
 import imgImage from 'figma:asset/e80c2105bb3cfbb556aa856bb71ecd1455ad8643.png';
 import imgPrinceCharming21 from 'figma:asset/9ccf72bd11503f8e2fa1afe9127e0ef4d26deed3.png';
 import { imgGroup6 } from '../../../imports/svg-9news';
@@ -151,7 +152,7 @@ function RightContent() {
 function Content4() {
   return (
     <div className="relative w-full bg-[#f4eefa]" data-name="CONTENT">
-      <div className="content-stretch flex flex-col lg:flex-row gap-8 lg:gap-[40px] items-center justify-center px-4 py-12 sm:px-6 md:px-12 md:py-14 lg:px-[80px] lg:py-[60px] max-w-[1440px] mx-auto">
+      <div className="content-stretch flex flex-col lg:flex-row gap-8 lg:gap-[40px] items-center justify-center px-4 py-12 sm:px-6 md:px-10 md:py-14 lg:px-[50px] lg:py-[60px] max-w-[1440px] mx-auto">
         <LeftContent />
         <RightContent />
       </div>
@@ -228,27 +229,8 @@ export function AboutSection() {
           <ArrowSwirl />
         </div>
       </div>
-      {/* Inline shape divider — wave transition from lavender About bg to cream below */}
-      <div className="relative w-full h-[100px] overflow-hidden" data-name="ABOUT SHAPE DIVIDER">
-        <div className="absolute inset-0 rotate-180">
-          <div className="absolute inset-[9.4%_0_8.22%_0]" data-name="COLOR SECTION BELOW">
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 83.5272">
-              <path d={svgPaths.p1e530780} fill="var(--fill-0, #F4EEFA)" />
-            </svg>
-          </div>
-          <div className="absolute inset-[0_0_14.79%_0]" data-name="MAIN COLOR SECTION ABOVE">
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 86.393">
-              <path d={svgPaths.pfef5600} fill="var(--fill-0, #FFFDF3)" />
-            </svg>
-          </div>
-          <div className="absolute inset-[29.12%_0_0_0]" data-name="STITCHING">
-            <div className="absolute inset-[-2.09%_0]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440.63 74.8665">
-                <path d={svgPaths.p14c1b280} stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="3" />
-              </svg>
-            </div>
-          </div>
-        </div>
+      <div className="relative w-full overflow-visible" data-name="ABOUT SHAPE DIVIDER">
+        <WaveDivider topColor="#f4eefa" bottomColor="#fffdf3" height={100} />
         <div className="hidden lg:block absolute bottom-0 right-[239px]">
           <Shrooms />
         </div>

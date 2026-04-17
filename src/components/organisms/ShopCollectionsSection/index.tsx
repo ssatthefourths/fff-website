@@ -1,11 +1,13 @@
 import React from 'react';
+import { WaveDivider } from '../../ui/WaveDivider';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import { patterns } from '../../../data/products';
 import imgFrame256 from 'figma:asset/c9712d88d9a9a431f7fb17b4a516a3a946e53ee0.png';
 import imgFrame257 from 'figma:asset/ddd96d147d6704729dbdbb04809e812f4d2508eb.png';
-import { imgGroup7, imgGroup8, imgGroup9, imgGroup10 } from '../../../imports/svg-9news';
+import { imgGroup7, imgGroup8, imgGroup9 } from '../../../imports/svg-9news';
+import { Illustration as SectionIllustration } from '../../ui/Illustration';
 
 function Group7() {
   return (
@@ -264,46 +266,10 @@ function Expression() {
   );
 }
 
-function Group10() {
-  return (
-    <div className="absolute inset-[0.01%_-0.04%_0.04%_0.02%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-0.035px_-0.02px] mask-size-[225px_144px]" style={{ maskImage: `url('${imgGroup10}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 225.058 143.919">
-        <g id="Group">
-          <path d={svgPaths.p10f8ac00} fill="var(--fill-0, #8B52C5)" id="Vector" />
-          <path d={svgPaths.p11295480} fill="var(--fill-0, #8B52C5)" id="Vector_2" />
-          <path d={svgPaths.pf64df80} fill="var(--fill-0, #8B52C5)" id="Vector_3" />
-          <path d={svgPaths.p3ad61cc0} fill="var(--fill-0, #8B52C5)" id="Vector_4" />
-          <path d={svgPaths.p395ab600} fill="var(--fill-0, #8B52C5)" id="Vector_5" />
-          <path d={svgPaths.p39c54f00} fill="var(--fill-0, #8B52C5)" id="Vector_6" />
-          <path d={svgPaths.p4b851aa} fill="var(--fill-0, #8B52C5)" id="Vector_7" />
-          <path d={svgPaths.pe317100} fill="var(--fill-0, #8B52C5)" id="Vector_8" />
-          <path d={svgPaths.p301f3d00} fill="var(--fill-0, #8B52C5)" id="Vector_9" />
-          <path d={svgPaths.p1bb3aa00} fill="var(--fill-0, #8B52C5)" id="Vector_10" />
-          <path d={svgPaths.p3e564500} fill="var(--fill-0, #8B52C5)" id="Vector_11" />
-          <path d={svgPaths.p27134e00} fill="var(--fill-0, #8B52C5)" id="Vector_12" />
-          <path d={svgPaths.p1a67c000} fill="var(--fill-0, #8B52C5)" id="Vector_13" />
-          <path d={svgPaths.p2ac495f0} fill="var(--fill-0, #8B52C5)" id="Vector_14" />
-          <path d={svgPaths.p36e6d980} fill="var(--fill-0, #8B52C5)" id="Vector_15" />
-          <path d={svgPaths.p5c73870} fill="var(--fill-0, #8B52C5)" id="Vector_16" />
-          <path d={svgPaths.p22a3f700} fill="var(--fill-0, #8B52C5)" id="Vector_17" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup10() {
-  return (
-    <div className="absolute contents inset-0" data-name="Clip path group">
-      <Group10 />
-    </div>
-  );
-}
-
 function Stuffing() {
   return (
-    <div className="hidden lg:block absolute bottom-[47px] right-[31px] w-[225px] h-[144px] overflow-clip" data-name="STUFFING">
-      <ClipPathGroup10 />
+    <div className="hidden lg:block absolute bottom-[47px] right-[31px] w-[225px] h-[144px]" data-name="STUFFING">
+      <SectionIllustration type="stuffing" variant="green" />
     </div>
   );
 }
@@ -312,31 +278,11 @@ export function ShopCollectionsSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="SHOP COLLECTIONS SECTION">
       {/* Section divider: white/cream above → yellow-green below */}
-      <div className="relative w-full h-[98px] overflow-visible">
-        <div className="absolute inset-0 -rotate-180 -scale-x-100">
-          <div className="relative size-full" data-name="SECTION DIVIDER">
-            <div className="absolute inset-[16.55%_0_0_0]">
-              <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 81.8235">
-                <path d={svgPaths.pf37eb00} fill="var(--fill-0, #FFFDF3)" />
-              </svg>
-            </div>
-            <div className="absolute inset-[0_0_13.69%_0]">
-              <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440 84.6308">
-                <path d={svgPaths.p18cf2a00} fill="var(--fill-0, #BBD148)" />
-              </svg>
-            </div>
-            <div className="absolute inset-[2.27%_0_25.93%_0]">
-              <div className="absolute inset-[-2.13%_0]">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1440.61 73.4006">
-                  <path d={svgPaths.p15608fe0} stroke="var(--stroke-0, #8B52C5)" strokeDasharray="12 12" strokeWidth="3" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="relative w-full overflow-visible">
+        <WaveDivider topColor="#fffdf3" bottomColor="#bbd148" height={98} flipX />
         {/* Illustration overflows upward from divider */}
         <div className="hidden lg:flex absolute w-[196px] h-[161px] left-[90px] top-[-44px] items-center justify-center" style={{ containerType: "size" }}>
-          <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+          <div className="flex-none h-[100cqh] w-[100cqw]">
             <Illustration />
           </div>
         </div>
