@@ -193,7 +193,7 @@ function Column() {
     <div className="content-stretch flex flex-col gap-[30px] items-center relative shrink-0 w-full" data-name="COLUMN">
       <Title1 />
       <ContentSideScroller1 />
-      <Link to="/blog" className="bg-[#bbd148] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-all duration-200" data-name="Button">
+      <Link to="/blog" className="bg-[#bbd148] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="Button">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="leading-[normal]">find out who the winner is!</p>
         </div>

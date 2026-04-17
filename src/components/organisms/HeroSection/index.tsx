@@ -10,13 +10,11 @@ import imgRaffGiraffeLillianAge121 from 'figma:asset/0d2e90278cd4df367aa89551e1e
 import imgScreenshot20240311At1202 from 'figma:asset/a31414da72a96cfe72dc9096eb31f4505524a3a9.png';
 import imgScreenshot20240311At1203 from 'figma:asset/82be614aad6ba9573a49093da258451aa98c533e.png';
 
-function Frame4() {
+function HeadingBlockHeroSection() {
   return (
     <div className="content-stretch flex flex-col gap-[23px] items-start relative shrink-0">
-      <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-[0] not-italic relative shrink-0 text-[#fdf8e0] text-[0px] w-full lg:w-[616px]">
-        <span className="leading-none text-[clamp(48px,6.6vw,95px)]">{`Come sew with our `}</span>
-        <span className="font-['Magic_Honey_Bold:Regular',sans-serif] leading-none text-[#bbd148] text-[clamp(44px,5.97vw,86px)]">fabulously</span>
-        <span className="leading-none text-[clamp(48px,6.6vw,95px)]">{` FUN community!`}</span>
+      <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[#fdf8e0] text-[clamp(48px,6.6vw,95px)] w-full lg:w-[616px]">
+        {`Come sew with our `}<span className="font-['Magic_Honey_Bold:Regular',sans-serif] text-[#bbd148] text-[clamp(44px,5.97vw,86px)]">fabulously</span>{` FUN community!`}
       </p>
       <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#fffdf3] text-[clamp(16px,1.8vw,26px)] text-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-full lg:w-[522px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         The place to find fun, easy-to-follow Soft Toy Sewing Patterns, step-by-step photo tutorials, lots of toy-making tips and tutorials to help you sew the cutest Soft Toys EVER! Come join the FUN!!!!
@@ -25,11 +23,11 @@ function Frame4() {
   );
 }
 
-function HeroContent() {
+function HeroContentHeroSection() {
   return (
     <div className="content-stretch flex flex-col gap-[25px] items-start justify-end relative shrink-0" data-name="HERO CONTENT">
-      <Frame4 />
-      <Link to="/beginners" className="bg-[#f6d75a] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-all duration-200" data-name="Button">
+      <HeadingBlockHeroSection />
+      <Link to="/beginners" className="bg-[#f6d75a] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="Button">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="leading-[normal]">beginner? Start here</p>
         </div>
@@ -38,7 +36,7 @@ function HeroContent() {
   );
 }
 
-function Pin1() {
+function PinTopGalleryHeroSection() {
   return (
     <div className="absolute inset-[0_58.57%_90.96%_34.57%] overflow-clip" data-name="PIN">
       <div className="absolute inset-[56.24%_22.37%_18.39%_0]" data-name="Vector">
@@ -94,7 +92,7 @@ function Pin1() {
   );
 }
 
-function TopImage() {
+function TopGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[0_27.3%_64.25%_29.52%]" data-name="TOP IMAGE">
       <div className="absolute flex inset-[2.96%_27.3%_64.25%_29.52%] items-center justify-center" style={{ containerType: "size" }}>
@@ -109,12 +107,12 @@ function TopImage() {
           </div>
         </div>
       </div>
-      <Pin1 />
+      <PinTopGalleryHeroSection />
     </div>
   );
 }
 
-function Pin2() {
+function PinLeftGalleryHeroSection() {
   return (
     <div className="overflow-clip relative size-full" data-name="PIN">
       <div className="absolute inset-[56.24%_22.37%_18.39%_0]" data-name="Vector">
@@ -170,7 +168,7 @@ function Pin2() {
   );
 }
 
-function LeftImage() {
+function LeftGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[38.15%_65.43%_21.57%_3.96%]" data-name="LEFT IMAGE">
       <div className="absolute flex inset-[38.15%_65.43%_21.57%_3.96%] items-center justify-center" style={{ containerType: "size" }}>
@@ -187,14 +185,14 @@ function LeftImage() {
       </div>
       <div className="absolute flex inset-[40.9%_88.36%_50.07%_4.78%] items-center justify-center" style={{ containerType: "size" }}>
         <div className="-scale-x-100 flex-none h-[100cqh] w-[100cqw]">
-          <Pin2 />
+          <PinLeftGalleryHeroSection />
         </div>
       </div>
     </div>
   );
 }
 
-function Pin3() {
+function PinBottomRightGalleryHeroSection() {
   return (
     <div className="absolute inset-[68.83%_7.24%_22.01%_86.69%] overflow-clip" data-name="PIN">
       <div className="absolute inset-[42.36%_29.1%_27.59%_25.88%]" data-name="Vector">
@@ -254,7 +252,7 @@ function Pin3() {
   );
 }
 
-function BottomRightImage() {
+function BottomRightGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[66.98%_3.81%_2.16%_54.63%]" data-name="BOTTOM RIGHT IMAGE">
       <div className="absolute flex inset-[66.98%_3.81%_2.16%_54.63%] items-center justify-center" style={{ containerType: "size" }}>
@@ -269,12 +267,12 @@ function BottomRightImage() {
           </div>
         </div>
       </div>
-      <Pin3 />
+      <PinBottomRightGalleryHeroSection />
     </div>
   );
 }
 
-function Pin4() {
+function PinTopLeftGalleryHeroSection() {
   return (
     <div className="absolute inset-[9.56%_92.22%_81.01%_0] overflow-clip" data-name="PIN">
       <div className="absolute inset-[36.53%_0_9.39%_22.53%]" data-name="Vector">
@@ -332,7 +330,7 @@ function Pin4() {
   );
 }
 
-function TopLeftImage() {
+function TopLeftGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[9.56%_62.54%_58.99%_0]" data-name="TOP LEFT IMAGE">
       <div className="absolute flex inset-[12.05%_62.54%_58.99%_0.53%] items-center justify-center" style={{ containerType: "size" }}>
@@ -347,12 +345,12 @@ function TopLeftImage() {
           </div>
         </div>
       </div>
-      <Pin4 />
+      <PinTopLeftGalleryHeroSection />
     </div>
   );
 }
 
-function Frame1() {
+function PinTopRightGalleryHeroSection() {
   return (
     <div className="absolute inset-[6.68%_11.2%_83.89%_81.02%] overflow-clip" data-name="Frame">
       <div className="absolute inset-[36.53%_0_9.39%_22.53%]" data-name="Vector">
@@ -410,7 +408,7 @@ function Frame1() {
   );
 }
 
-function TopRightImage() {
+function TopRightGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[6.68%_7.63%_55.6%_61.38%]" data-name="TOP RIGHT IMAGE">
       <div className="absolute flex inset-[8.72%_7.63%_55.6%_61.38%] items-center justify-center" style={{ containerType: "size" }}>
@@ -427,12 +425,12 @@ function TopRightImage() {
           </div>
         </div>
       </div>
-      <Frame1 />
+      <PinTopRightGalleryHeroSection />
     </div>
   );
 }
 
-function Frame2() {
+function PinBottomLeftGalleryHeroSection() {
   return (
     <div className="overflow-clip relative size-full" data-name="Frame">
       <div className="absolute inset-[27.96%_44.36%_0_13.05%]" data-name="Vector">
@@ -483,7 +481,7 @@ function Frame2() {
   );
 }
 
-function BottomLeftImage() {
+function BottomLeftGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[67.79%_42.2%_0_15.85%]" data-name="BOTTOM LEFT IMAGE">
       <div className="absolute flex inset-[69.86%_42.2%_0_15.85%] items-center justify-center" style={{ containerType: "size" }}>
@@ -500,14 +498,14 @@ function BottomLeftImage() {
       </div>
       <div className="absolute flex inset-[67.79%_69.15%_21.25%_18.88%] items-center justify-center" style={{ containerType: "size" }}>
         <div className="flex-none h-[hypot(30.2542cqw,54.1821cqh)] rotate-[-31.2deg] w-[hypot(69.7458cqw,-45.8179cqh)]">
-          <Frame2 />
+          <PinBottomLeftGalleryHeroSection />
         </div>
       </div>
     </div>
   );
 }
 
-function Pin5() {
+function PinRightGalleryHeroSection() {
   return (
     <div className="absolute inset-[37.59%_1.7%_55.47%_88.54%] overflow-clip" data-name="PIN">
       <div className="absolute inset-[27.96%_44.36%_0_13.05%]" data-name="Vector">
@@ -558,7 +556,7 @@ function Pin5() {
   );
 }
 
-function RightImage() {
+function RightGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[37.59%_0_31.7%_59.96%]" data-name="RIGHT IMAGE">
       <div className="absolute flex inset-[39.42%_0_31.7%_60.34%] items-center justify-center" style={{ containerType: "size" }}>
@@ -575,12 +573,12 @@ function RightImage() {
           </div>
         </div>
       </div>
-      <Pin5 />
+      <PinRightGalleryHeroSection />
     </div>
   );
 }
 
-function Pin6() {
+function PinMiddleGalleryHeroSection() {
   return (
     <div className="absolute inset-[31.12%_56.34%_59.72%_37.59%] overflow-clip" data-name="PIN">
       <div className="absolute inset-[48.43%_10.57%_4.21%_0]" data-name="Vector">
@@ -640,7 +638,7 @@ function Pin6() {
   );
 }
 
-function MiddleImage() {
+function MiddleGalleryImageHeroSection() {
   return (
     <div className="absolute contents inset-[31.12%_34.05%_25.56%_30.78%]" data-name="MIDDLE IMAGE">
       <div className="absolute flex inset-[32.8%_34.05%_25.56%_30.78%] items-center justify-center" style={{ containerType: "size" }}>
@@ -657,24 +655,24 @@ function MiddleImage() {
           </div>
         </div>
       </div>
-      <Pin6 />
+      <PinMiddleGalleryHeroSection />
     </div>
   );
 }
 
-function Content7() {
+function HeroLayoutHeroSection() {
   return (
     <div className="bg-[#8b52c5] content-stretch flex flex-col lg:flex-row h-auto lg:h-[782px] items-center justify-between p-6 sm:p-8 md:p-10 lg:p-[50px] relative w-full max-w-[1440px] mx-auto" data-name="CONTENT">
-      <HeroContent />
+      <HeroContentHeroSection />
       <div className="hidden lg:block h-[708.297px] relative shrink-0 w-[703px]" data-name="HERO GALLERY">
-        <TopImage />
-        <LeftImage />
-        <BottomRightImage />
-        <TopLeftImage />
-        <TopRightImage />
-        <BottomLeftImage />
-        <RightImage />
-        <MiddleImage />
+        <TopGalleryImageHeroSection />
+        <LeftGalleryImageHeroSection />
+        <BottomRightGalleryImageHeroSection />
+        <TopLeftGalleryImageHeroSection />
+        <TopRightGalleryImageHeroSection />
+        <BottomLeftGalleryImageHeroSection />
+        <RightGalleryImageHeroSection />
+        <MiddleGalleryImageHeroSection />
       </div>
     </div>
   );
@@ -682,8 +680,8 @@ function Content7() {
 
 export function HeroSection() {
   return (
-    <div className="relative w-full overflow-x-clip bg-[#8b52c5]" data-name="HERO SECTION">
-      <Content7 />
+    <div className="relative w-full overflow-x-clip bg-[#8b52c5] isolate" data-name="HERO SECTION">
+      <HeroLayoutHeroSection />
       <div className="hidden lg:block absolute right-0 bottom-[98px] h-[148.764px] w-[265.032px]" data-name="Vector">
         <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 265.032 148.764">
           <g id="Vector">
@@ -693,7 +691,7 @@ export function HeroSection() {
           </g>
         </svg>
       </div>
-      <div className="relative h-[98.054px] w-full z-10" data-name="BELOW HERO SHAPE DIVIDER">
+      <div className="relative h-[98.054px] w-full z-10 lg:absolute lg:bottom-0 lg:w-full" data-name="HeroShapeDividerBottom">
         <div className="absolute inset-[0_-0.02%]" data-name="Vector">
           <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="xMidYMax slice" viewBox="0 0 1440.61 98.0537">
             <g id="Vector">

@@ -103,7 +103,7 @@ function Inputs() {
             <Link to="/terms" className="text-[#f6d75a] underline">terms of use</Link>
           </span>
         </label>
-        <button onClick={handleSubmit} className="bg-[#f6d75a] flex items-center justify-center px-[40px] py-[18px] rounded-[100px] w-full sm:flex-1 hover:brightness-110 hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+        <button onClick={handleSubmit} className="bg-[#f6d75a] flex items-center justify-center px-[40px] py-[18px] rounded-[100px] w-full sm:flex-1 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200 cursor-pointer">
           <span className="font-['Roboto:Bold',sans-serif] font-bold text-[#3f3f3f] text-[16px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
             send me my free pattern!
           </span>
@@ -171,7 +171,7 @@ export function CtaHoneyTeddySection() {
       <ArrowSwirl1 />
       <CtaContent />
       <Stars />
-      <div className="hidden md:block absolute aspect-[2404/1656] left-[70.7%] right-0 top-[-20%] z-10" data-name="Honey-Teddy-Bear 1">
+      <div className="hidden lg:block absolute aspect-[2404/1656] left-[70.7%] right-0 top-[-20%] z-10" data-name="Honey-Teddy-Bear 1">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgHoneyTeddyBear1} />
       </div>
     </div>

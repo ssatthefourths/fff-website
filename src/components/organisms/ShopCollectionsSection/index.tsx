@@ -118,7 +118,7 @@ function DrawersContent() {
               <Link
                 key={product.id}
                 to={`/patterns/${product.category}/${product.slug}`}
-                className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-[261px] snap-start hover:-translate-y-1 transition-all duration-200"
+                className="content-stretch flex flex-col gap-[10px] items-center relative shrink-0 w-[261px] snap-start hover:shadow-md transition-[box-shadow] duration-200"
               >
                 <div className="h-[236px] relative rounded-[20px] shrink-0 w-[260px]">
                   <div className="absolute inset-0 pointer-events-none rounded-[20px]">
@@ -161,12 +161,12 @@ function DrawersContent() {
 function Buttons() {
   return (
     <div className="content-stretch flex gap-[30px] items-start relative shrink-0" data-name="BUTTONS">
-      <Link to="/patterns" className="bg-[#8b52c5] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-all duration-200" data-name="SHOP ALL PATTERNS">
+      <Link to="/patterns" className="bg-[#8b52c5] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="SHOP ALL PATTERNS">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#fffdf3] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="leading-[normal]">shop all patterns</p>
         </div>
       </Link>
-      <Link to="/patterns?category=free" className="bg-[#fffdf3] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-all duration-200" data-name="EXPLORE WHAT'S FOR FREE">
+      <Link to="/patterns?category=free" className="bg-[#fffdf3] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="EXPLORE WHAT'S FOR FREE">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="leading-[normal]">explore what's for free</p>
         </div>

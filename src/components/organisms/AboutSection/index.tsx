@@ -139,7 +139,7 @@ function RightContent() {
       <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[clamp(36px,5vw,70px)] w-[min-content]">Hi, I'm Pauline</p>
       <SubTitle1 />
       <Text1 />
-      <Link to="/about" className="bg-[#bbd148] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-all duration-200" data-name="Button">
+      <Link to="/about" className="bg-[#bbd148] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="Button">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="leading-[normal]">more about my story</p>
         </div>
