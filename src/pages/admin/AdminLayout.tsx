@@ -14,6 +14,7 @@ const NAV_ITEMS: NavItemConfig[] = [
   { to: '/admin/products', label: 'Products', icon: '🧸' },
   { to: '/admin/orders', label: 'Orders', icon: '📦' },
   { to: '/admin/discounts', label: 'Discounts', icon: '🏷️' },
+  { to: '/admin/blog', label: 'Blog', icon: '📝' },
   { to: '/admin/newsletter', label: 'Newsletter', icon: '📧' },
 ];
 
