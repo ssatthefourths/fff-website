@@ -114,7 +114,7 @@ function Container() {
 export function FeatureSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="FEATURE SECTION">
-      <div className="absolute hidden lg:flex inset-[22%_0_0_53%] items-center justify-center" style={{ containerType: "size" }}>
+      <div className="absolute hidden lg:flex inset-[8%_0_0_53%] items-center justify-center" style={{ containerType: "size" }}>
         <div className="flex-none h-[hypot(-34.3312cqw,41.1529cqh)] rotate-[40.85deg] w-[hypot(65.6688cqw,58.8471cqh)]">
           <PatchBehindPhoto />
         </div>
