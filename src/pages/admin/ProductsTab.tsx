@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, type SyntheticEvent } from 'react';
 
 interface Product {
   id: number;
@@ -136,7 +136,7 @@ export function ProductsTab() {
     setFormError(null);
   }
 
-  async function submitForm(e: React.FormEvent) {
+  async function submitForm(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
     setFormError(null);
