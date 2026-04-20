@@ -25,27 +25,25 @@ interface FreeStuffCardProps {
 
 function FreeStuffCard({ imageSrc, title, description, buttonText, to }: FreeStuffCardProps) {
   return (
-    <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
-      <div className="bg-white relative rounded-[20px] w-[300px]">
-        <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-        <div className="flex flex-col items-center size-full">
-          <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
-            <div className="aspect-square relative rounded-[5px] shrink-0 w-full overflow-hidden">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imageSrc} />
-            </div>
-            <div className="capitalize flex flex-col font-['Bingo_Action_Comic:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[32px] text-center w-[min-content] min-h-[70px]">
-              <p className="leading-[1.1]">{title}</p>
-            </div>
-            <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[16px] text-center w-[min-content]">
-              <p className="leading-[1.5]">{description}</p>
-            </div>
-            <Link to={to} className="content-stretch flex items-center justify-center px-[30px] py-[14px] relative rounded-[100px] shrink-0 mt-auto hover:bg-[#8b52c5]/10 hover:scale-[1.02] transition-[transform,background-color] duration-200" data-name="Button">
-              <div aria-hidden="true" className="absolute border-2 border-[#8b52c5] border-solid inset-0 pointer-events-none rounded-[100px]" />
-              <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[16px] text-center tracking-[2px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-                <p className="leading-[normal]">{buttonText}</p>
-              </div>
-            </Link>
+    <div className="bg-white relative rounded-[20px] w-full h-full">
+      <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
+      <div className="flex flex-col items-center size-full">
+        <div className="content-stretch flex flex-col gap-[20px] items-center p-[25px] relative size-full">
+          <div className="aspect-square relative rounded-[10px] shrink-0 w-full overflow-hidden">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imageSrc} />
           </div>
+          <div className="capitalize flex flex-col font-['Bingo_Action_Comic:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[clamp(28px,2.6vw,42px)] text-center w-[min-content] min-h-[70px] lg:min-h-[100px]">
+            <p className="leading-[1.1]">{title}</p>
+          </div>
+          <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-[min-content]">
+            <p className="leading-[1.5]">{description}</p>
+          </div>
+          <Link to={to} className="content-stretch flex items-center justify-center px-[40px] py-[16px] relative rounded-[100px] shrink-0 mt-auto hover:bg-[#8b52c5]/10 hover:scale-[1.02] transition-[transform,background-color] duration-200" data-name="Button">
+            <div aria-hidden="true" className="absolute border-2 border-[#8b52c5] border-solid inset-0 pointer-events-none rounded-[100px]" />
+            <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[16px] text-center tracking-[2.5px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <p className="leading-[normal]">{buttonText}</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
@@ -76,35 +74,49 @@ const CARDS: FreeStuffCardProps[] = [
   },
 ];
 
+function ArrowIcon() {
+  return (
+    <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
+      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
+        <path d={svgPaths.p1ad98580} stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
+      </svg>
+    </div>
+  );
+}
+
 function ContentSideScroller() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
+  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 340, behavior: 'smooth' });
 
   return (
-    <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0 w-full max-w-[1440px]" data-name="CONTENT SIDE SCROLLER">
-      <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" data-name="LEFT ARROW" aria-label="Scroll left">
-        <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
-            <path d={svgPaths.p1ad98580} id="LEFT ARROW" stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
-          </svg>
-        </div>
-      </button>
-      <div ref={scrollRef} className="flex gap-[20px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0 px-4 scroll-px-4">
+    <div className="w-full max-w-[1440px]" data-name="CONTENT SIDE SCROLLER">
+      {/* Desktop: 3-column grid — all cards visible, no horizontal scroll needed */}
+      <div className="hidden lg:grid grid-cols-3 gap-[30px]">
         {CARDS.map((card) => (
           <FreeStuffCard key={card.title} {...card} />
         ))}
       </div>
-      <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
-        <div className="flex-none rotate-180">
-          <div className="h-[40px] relative w-[20px]" data-name="RIGHT ARROW">
-            <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
-                <path d={svgPaths.p1ad98580} id="RIGHT ARROW" stroke="var(--stroke-0, #3F3F3F)" strokeLinecap="round" strokeWidth="5" />
-              </svg>
+
+      {/* Mobile + tablet: horizontal scroll carousel with snap + arrows */}
+      <div className="lg:hidden content-stretch flex gap-[20px] items-center justify-center w-full">
+        <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll left">
+          <ArrowIcon />
+        </button>
+        <div ref={scrollRef} className="flex gap-[20px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0 px-2 scroll-px-2">
+          {CARDS.map((card) => (
+            <div key={card.title} className="flex flex-row items-stretch shrink-0 snap-start w-[min(320px,85vw)]">
+              <FreeStuffCard {...card} />
+            </div>
+          ))}
+        </div>
+        <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
+          <div className="flex-none rotate-180">
+            <div className="h-[40px] relative w-[20px]">
+              <ArrowIcon />
             </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   );
 }

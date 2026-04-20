@@ -1,4 +1,4 @@
-import React from 'react';
+import type { CSSProperties } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import imgJan from 'figma:asset/11adb49771b256dbfb8229b0df294e2fb028fefc.png';
@@ -24,7 +24,7 @@ function PatchBehindPhoto() {
 
 function Title2() {
   return (
-    <div className="relative px-4 pt-12 pb-4 sm:px-6 md:px-12 lg:px-[50px] lg:pt-[60px] lg:pb-0 content-stretch flex flex-col gap-[20px] items-center text-center max-w-[1440px] mx-auto" data-name="TITLE">
+    <div className="relative px-4 pt-12 pb-8 sm:px-6 md:px-10 md:pb-12 lg:px-[50px] lg:pt-[80px] lg:pb-[60px] content-stretch flex flex-col gap-[20px] items-center text-center max-w-[1440px] mx-auto" data-name="TITLE">
       <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[#8b52c5] text-[clamp(36px,5vw,70px)] w-full max-w-[954px]">Featured Maker</p>
       <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#3f3f3f] text-[26px] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Highlighting a Super Softie SELLER. dolor sit amet, consectetur adipiscing elit. Phasellus lobortis, tellus ac consequat tempus, nunc odio consequat quam, ultricies elementum urna nulla et purus. `}</p>
     </div>
@@ -72,12 +72,12 @@ function ContentLeft() {
 function ContentRight() {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] hidden lg:inline-grid leading-[0] mr-[-80px] place-items-start relative shrink-0" data-name="CONTENT RIGHT">
-      <div className="col-1 flex h-[609.168px] items-center justify-center ml-[28.17px] mt-0 relative row-1 w-[576.612px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
+      <div className="col-1 flex h-[609.168px] items-center justify-center ml-[28.17px] mt-0 relative row-1 w-[576.612px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as CSSProperties}>
         <div className="flex-none rotate-[9.81deg]">
           <div className="bg-white h-[532.947px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.15)] w-[492.999px]" data-name="POLOROID BG" />
         </div>
       </div>
-      <div className="col-1 flex h-[524.698px] items-center justify-center ml-[59.13px] mt-[24.19px] relative row-1 w-[525.261px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "21" } as React.CSSProperties}>
+      <div className="col-1 flex h-[524.698px] items-center justify-center ml-[59.13px] mt-[24.19px] relative row-1 w-[525.261px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "21" } as CSSProperties}>
         <div className="flex-none rotate-[9.69deg]">
           <div className="h-[454.554px] relative w-[455.242px]" data-name="jan">
             <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgJan} />
@@ -89,7 +89,7 @@ function ContentRight() {
         <br aria-hidden="true" />
         is of her sewing biz!💗
       </p>
-      <div className="col-1 flex h-[131.793px] items-center justify-center ml-[136.31px] mt-[492.51px] relative row-1 w-[136.026px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "21" } as React.CSSProperties}>
+      <div className="col-1 flex h-[131.793px] items-center justify-center ml-[136.31px] mt-[492.51px] relative row-1 w-[136.026px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "21" } as CSSProperties}>
         <div className="-scale-y-100 flex-none rotate-[37.52deg]">
           <div className="h-[84px] relative w-[107.001px]" data-name="ARROW SWIRL">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 107.001 83.9995">
