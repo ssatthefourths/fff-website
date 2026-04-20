@@ -9,6 +9,7 @@ const ShopPage = lazy(() => import('../pages/ShopPage'));
 const ProductPage = lazy(() => import('../pages/ProductPage'));
 const CartPage = lazy(() => import('../pages/CartPage'));
 const CheckoutPage = lazy(() => import('../pages/CheckoutPage'));
+const CheckoutSuccessPage = lazy(() => import('../pages/CheckoutSuccessPage'));
 const BlogPage = lazy(() => import('../pages/BlogPage'));
 const BlogPostPage = lazy(() => import('../pages/BlogPostPage'));
 const FaqPage = lazy(() => import('../pages/FaqPage'));
@@ -49,6 +50,7 @@ export default function App() {
                 <Route path="patterns/:category/:slug" element={<ProductPage />} />
                 <Route path="cart" element={<CartPage />} />
                 <Route path="checkout" element={<CheckoutPage />} />
+                <Route path="checkout/success" element={<CheckoutSuccessPage />} />
                 <Route path="blog" element={<BlogPage />} />
                 <Route path="blog/:slug" element={<BlogPostPage />} />
                 <Route path="faq" element={<FaqPage />} />
