@@ -24,7 +24,7 @@ function PatchBehindPhoto() {
 
 function Title2() {
   return (
-    <div className="relative px-4 pt-12 pb-8 sm:px-6 md:px-10 md:pb-12 lg:px-[50px] lg:pt-[80px] lg:pb-[60px] content-stretch flex flex-col gap-[20px] items-center text-center max-w-[1440px] mx-auto" data-name="TITLE">
+    <div className="relative px-4 pt-12 pb-4 sm:px-6 md:px-10 lg:px-[50px] lg:pt-[60px] lg:pb-0 content-stretch flex flex-col gap-[20px] items-center text-center max-w-[1440px] mx-auto" data-name="TITLE">
       <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[#8b52c5] text-[clamp(36px,5vw,70px)] w-full max-w-[954px]">Featured Maker</p>
       <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#3f3f3f] text-[26px] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Highlighting a Super Softie SELLER. dolor sit amet, consectetur adipiscing elit. Phasellus lobortis, tellus ac consequat tempus, nunc odio consequat quam, ultricies elementum urna nulla et purus. `}</p>
     </div>
@@ -114,7 +114,7 @@ function Container() {
 export function FeatureSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="FEATURE SECTION">
-      <div className="absolute hidden lg:flex inset-[6.52%_0_15.53%_53%] items-center justify-center" style={{ containerType: "size" }}>
+      <div className="absolute hidden lg:flex inset-[22%_0_0_53%] items-center justify-center" style={{ containerType: "size" }}>
         <div className="flex-none h-[hypot(-34.3312cqw,41.1529cqh)] rotate-[40.85deg] w-[hypot(65.6688cqw,58.8471cqh)]">
           <PatchBehindPhoto />
         </div>
