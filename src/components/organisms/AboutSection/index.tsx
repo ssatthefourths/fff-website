@@ -4,8 +4,6 @@ import svgPaths from '../../../assets/svgPaths';
 import { WaveDivider } from '../../ui/WaveDivider';
 import imgImage from 'figma:asset/e80c2105bb3cfbb556aa856bb71ecd1455ad8643.png';
 import imgPrinceCharming21 from 'figma:asset/9ccf72bd11503f8e2fa1afe9127e0ef4d26deed3.png';
-import { imgGroup6 } from '../../../imports/svg-9news';
-
 function Patch() {
   return (
     <div className="h-[289px] relative w-[321px]" data-name="PATCH">
@@ -24,49 +22,19 @@ function Patch() {
   );
 }
 
-function Group6() {
-  return (
-    <div className="absolute inset-[7.21%_13.72%_8.22%_20.75%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-17.431px_-5.336px] mask-size-[83.094px_73.852px]" style={{ maskImage: `url('${imgGroup6}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 55.0429 62.5787">
-        <g id="Group">
-          <path d={svgPaths.p307bfb00} fill="var(--fill-0, #F9B7B7)" id="Vector" />
-          <path d={svgPaths.p2f4eba00} fill="var(--fill-0, #B33C37)" id="Vector_2" />
-          <path d={svgPaths.p2d45aa00} fill="var(--fill-0, #F3726D)" id="Vector_3" />
-          <path d={svgPaths.p3175c000} fill="var(--fill-0, #F9B7B7)" id="Vector_4" />
-          <path d={svgPaths.paac3640} fill="var(--fill-0, #BCBEC0)" id="Vector_5" />
-          <path d={svgPaths.p36546780} fill="var(--fill-0, #BCBEC0)" id="Vector_6" />
-          <path d={svgPaths.p2bb80740} fill="var(--fill-0, #F3726D)" id="Vector_7" />
-          <path d={svgPaths.p31c29580} fill="var(--fill-0, #F3726D)" id="Vector_8" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup6() {
-  return (
-    <div className="absolute contents inset-[0_1.08%_0.2%_0]" data-name="Clip path group">
-      <Group6 />
-    </div>
-  );
-}
-
-function Frame() {
-  return (
-    <div className="overflow-clip relative size-full" data-name="Frame">
-      <ClipPathGroup6 />
-    </div>
-  );
-}
-
 function Pin() {
   return (
-    <div className="h-[49.162px] overflow-clip relative w-[68.642px]" data-name="PIN">
-      <div className="absolute flex inset-[-54.29%_-28.66%_-54.97%_-28.13%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="flex-none h-[hypot(-37.7866cqw,90.3338cqh)] rotate-[25.4deg] w-[hypot(90.3338cqw,48.6893cqh)]">
-          <Frame />
-        </div>
-      </div>
+    <div className="h-[78px] w-[70px] relative" data-name="PIN">
+      <svg className="absolute inset-0 size-full" viewBox="0 0 55.0429 62.5787" fill="none" preserveAspectRatio="xMidYMid meet">
+        <path d={svgPaths.p307bfb00} fill="#F9B7B7" />
+        <path d={svgPaths.p2f4eba00} fill="#B33C37" />
+        <path d={svgPaths.p2d45aa00} fill="#F3726D" />
+        <path d={svgPaths.p3175c000} fill="#F9B7B7" />
+        <path d={svgPaths.paac3640} fill="#BCBEC0" />
+        <path d={svgPaths.p36546780} fill="#BCBEC0" />
+        <path d={svgPaths.p2bb80740} fill="#F3726D" />
+        <path d={svgPaths.p31c29580} fill="#F3726D" />
+      </svg>
     </div>
   );
 }
@@ -96,7 +64,7 @@ function LeftContent() {
           </div>
         </div>
       </div>
-      <div className="col-1 flex h-[73.852px] items-center justify-center ml-[482.47px] mt-[27px] relative row-1 w-[83.094px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
+      <div className="col-1 flex h-[100px] items-center justify-center ml-[470px] mt-[15px] relative row-1 w-[100px]">
         <div className="flex-none rotate-[-25.4deg]">
           <Pin />
         </div>
