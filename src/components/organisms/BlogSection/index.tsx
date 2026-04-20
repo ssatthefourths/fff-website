@@ -5,7 +5,6 @@ import imgUntitledDesign561 from 'figma:asset/c04939546f5c2f4cdcde698bf0467c0bde
 import imgUntitledDesign562 from 'figma:asset/c7cb7de78756b698f03f3c5ee1df7454f03f49fd.png';
 import imgUntitledDesign563 from 'figma:asset/f4e5f466ccd0fafd0b969fb06c776feae7507b11.png';
 import { imgGroup } from '../../../imports/svg-9news';
-import { Illustration } from '../../ui/Illustration';
 
 function Group() {
   return (
@@ -125,20 +124,12 @@ function BlogContent() {
   );
 }
 
-function PinCushion() {
-  return (
-    <div className="hidden lg:block absolute bottom-[40px] right-[29px] w-[196px] h-[168px]" data-name="THIMBLE">
-      <Illustration type="pin-cushion" variant="purple" />
-    </div>
-  );
-}
 
 export function BlogSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="BLOG SECTION">
       <BgPatch />
       <BlogContent />
-      <PinCushion />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { WaveDivider } from '../../ui/WaveDivider';
-import { Illustration } from '../../ui/Illustration';
 import { useRef } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
@@ -11,14 +10,6 @@ import imgUntitledDesign561 from 'figma:asset/c04939546f5c2f4cdcde698bf0467c0bde
 import { makers } from '../../../data/makers';
 
 const MAKER_IMAGES = [imgScreenshot20240311At1204, imgScreenshot20240311At1205, imgUntitledDesign563, imgUntitledDesign561];
-
-function StuffingIllustration() {
-  return (
-    <div className="hidden lg:block absolute bottom-0 right-[4%] w-[225px] h-[144px]" data-name="STUFFING ILLUSTRATION">
-      <Illustration type="stuffing" variant="purple" />
-    </div>
-  );
-}
 
 function BgPatch1() {
   return (
@@ -170,8 +161,11 @@ function Column() {
       <ContentSideScroller1 />
       <Link to="/blog" className="bg-[#bbd148] content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 hover:brightness-110 hover:scale-[1.02] transition-[transform,filter] duration-200" data-name="Button">
         <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#3f3f3f] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-          <p className="leading-[normal]">Find out who the winner is,</p>
+          <p className="leading-[normal]">Find out who the winner is</p>
         </div>
+        <svg className="shrink-0 ml-3" width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+          <path d="M1 7h17m0 0l-6-6m6 6l-6 6" stroke="#3f3f3f" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </Link>
     </div>
   );
@@ -197,7 +191,6 @@ function Content2() {
 export function MakerOfTheMonthSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="MAKER OF THE MONTH SECTION">
-      <StuffingIllustration />
       <div className="hidden lg:flex absolute bottom-[280px] left-[33%] w-[145px] h-[142px] items-center justify-center" style={{ containerType: "size" }}>
         <div className="flex-none h-[hypot(-39.8764cqw,36.4414cqh)] rotate-[42.5deg] skew-x-[-9.11deg] w-[hypot(60.1236cqw,63.5586cqh)]">
           <div className="relative size-full" data-name="ARROW SWIRL">

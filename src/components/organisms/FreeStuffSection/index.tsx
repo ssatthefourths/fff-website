@@ -6,12 +6,11 @@ import { WaveDivider } from '../../ui/WaveDivider';
 import imgScreenshot20240311At1201 from 'figma:asset/960a23c45c6cc9ccd4981d84131d22dc14b255d4.png';
 import imgScreenshot20240311At1202 from 'figma:asset/a31414da72a96cfe72dc9096eb31f4505524a3a9.png';
 import imgScreenshot20240311At1203 from 'figma:asset/82be614aad6ba9573a49093da258451aa98c533e.png';
-import { Illustration } from '../../ui/Illustration';
 
 function Title() {
   return (
     <div className="content-stretch flex flex-col gap-[20px] items-center relative shrink-0 text-[#3f3f3f] text-center" data-name="TITLE">
-      <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[clamp(36px,5vw,70px)] text-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-full max-w-[954px]">Love Free Stuff? There's loads to get you started!</p>
+      <p className="font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[clamp(36px,5vw,70px)] w-full max-w-[954px]">Love Free Stuff? There's loads to get you started!</p>
       <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[clamp(18px,2.5vw,26px)] w-full max-w-[1200px]" style={{ fontVariationSettings: "'wdth' 100" }}>{`Get started with FREE patterns, video tutorials, and a toy-making email course. Everything you need to begin your soft toy sewing journey — no experience required!`}</p>
     </div>
   );
@@ -107,20 +106,12 @@ function Content1() {
 }
 
 
-function Scissors() {
-  return (
-    <div className="hidden lg:block absolute bottom-[104px] left-[75px] w-[289px]" data-name="SCISSORS">
-      <Illustration type="scissors" variant="purple" />
-    </div>
-  );
-}
 
 export function FreeStuffSection() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="FREE STUFF SECTION">
       <Content1 />
       <WaveDivider topColor="#dde8a3" bottomColor="#fffdf3" height={104} flipY />
-      <Scissors />
     </div>
   );
 }

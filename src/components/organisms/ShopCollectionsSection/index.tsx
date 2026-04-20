@@ -7,7 +7,6 @@ import { patterns } from '../../../data/products';
 import imgFrame256 from 'figma:asset/c9712d88d9a9a431f7fb17b4a516a3a946e53ee0.png';
 import imgFrame257 from 'figma:asset/ddd96d147d6704729dbdbb04809e812f4d2508eb.png';
 import { imgGroup7, imgGroup8, imgGroup9 } from '../../../imports/svg-9news';
-import { Illustration as SectionIllustration } from '../../ui/Illustration';
 
 function Group7() {
   return (
@@ -48,18 +47,16 @@ function Text2() {
 }
 
 const TABS = [
-  { key: 'beginner', label: 'easy/beginners', filter: (p: typeof patterns[0]) => p.difficulty === 'beginner' },
-  { key: 'advanced', label: 'challenging', filter: (p: typeof patterns[0]) => p.difficulty === 'advanced' || p.difficulty === 'intermediate' },
-  { key: 'seasonal', label: 'seasonal', filter: (p: typeof patterns[0]) => p.category === 'seasonal' },
   { key: 'featured', label: 'best sellers', filter: (p: typeof patterns[0]) => p.isFeatured },
-  { key: 'new', label: 'new designs', filter: (p: typeof patterns[0]) => p.isNew },
+  { key: 'beginner', label: 'beginner friendly', filter: (p: typeof patterns[0]) => p.difficulty === 'beginner' },
+  { key: 'seasonal', label: 'seasonal', filter: (p: typeof patterns[0]) => p.category === 'seasonal' },
+  { key: 'new', label: 'new', filter: (p: typeof patterns[0]) => p.isNew },
 ] as const;
 
 const TAB_TITLES: Record<string, { title: string; subtitle: string }> = {
-  beginner: { title: 'Browse Beginner Patterns', subtitle: 'Perfect for first-time sewers! These patterns are easy to follow with step-by-step photo instructions.' },
-  advanced: { title: 'Browse Challenging Patterns', subtitle: 'Ready for a challenge? These patterns feature more complex techniques for experienced sewers.' },
-  seasonal: { title: 'Browse Seasonal Patterns', subtitle: 'Sew some cute gifts for your loved ones with these seasonal patterns. All INSTANT downloads.' },
   featured: { title: 'Browse Best Sellers', subtitle: 'Our most popular patterns loved by thousands of Funky Friends Factory fans worldwide!' },
+  beginner: { title: 'Browse Beginner Friendly Patterns', subtitle: 'Perfect for first-time sewers! These patterns are easy to follow with step-by-step photo instructions.' },
+  seasonal: { title: 'Browse Seasonal Patterns', subtitle: 'Sew some cute gifts for your loved ones with these seasonal patterns. All INSTANT downloads.' },
   new: { title: 'Browse New Designs', subtitle: 'Check out our latest pattern releases — fresh designs just added to the collection!' },
 };
 
@@ -266,13 +263,6 @@ function Expression() {
   );
 }
 
-function Stuffing() {
-  return (
-    <div className="hidden lg:block absolute bottom-[47px] right-[31px] w-[225px] h-[144px]" data-name="STUFFING">
-      <SectionIllustration type="stuffing" variant="green" />
-    </div>
-  );
-}
 
 export function ShopCollectionsSection() {
   return (
@@ -292,8 +282,6 @@ export function ShopCollectionsSection() {
       <div className="relative bg-[#bbd148]">
         <HeartBgTopRightNew />
         <Container1 />
-        <Expression />
-        <Stuffing />
       </div>
     </div>
   );

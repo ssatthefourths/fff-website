@@ -53,7 +53,7 @@ function Frame5() {
 
 function MenuFooter() {
   return (
-    <div className="capitalize content-stretch flex flex-col sm:flex-row gap-4 sm:gap-0 font-['Avenir:Heavy',sans-serif] items-start leading-[1.6] not-italic relative shrink-0 text-[#fdf8e0] text-[18px] whitespace-nowrap" data-name="MENU FOOTER">
+    <div className="capitalize content-stretch flex flex-col sm:flex-row gap-4 sm:gap-0 font-['Avenir:Heavy',sans-serif] items-start leading-[1.6] not-italic relative shrink-0 text-white text-[18px] whitespace-nowrap" data-name="MENU FOOTER">
       <Frame3 />
       <Frame5 />
     </div>
@@ -67,13 +67,6 @@ function FooterSocial() {
         <div className="absolute inset-[0_23.22%]" data-name="Vector">
           <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.9964 28">
             <path d={svgPaths.p1036e500} fill="var(--fill-0, #FFFDF3)" id="Vector" />
-          </svg>
-        </div>
-      </a>
-      <a href="https://x.com/funkaborella" target="_blank" rel="noopener noreferrer" className="overflow-clip relative shrink-0 size-[28px]" data-name="icon-x">
-        <div className="absolute inset-[9.38%_5.05%_9.38%_5.06%]" data-name="Vector">
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25.1685 22.75">
-            <path d={svgPaths.p3a5fbe00} fill="var(--fill-0, #FFFDF3)" id="Vector" />
           </svg>
         </div>
       </a>

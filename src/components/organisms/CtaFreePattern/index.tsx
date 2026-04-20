@@ -2,13 +2,11 @@ import React from 'react';
 import svgPaths from '../../../assets/svgPaths';
 import { WaveDivider } from '../../ui/WaveDivider';
 import { imgGroup4 } from '../../../imports/svg-9news';
-import { Illustration } from '../../ui/Illustration';
 
 function Socials() {
   return (
     <div className="content-stretch flex gap-[27px] h-[28px] items-start justify-center relative shrink-0 w-full" data-name="socials">
       <a href="https://www.facebook.com/FunkyFriendsFactory" target="_blank" rel="noopener noreferrer" className="overflow-clip relative shrink-0 size-[28px]"><div className="absolute inset-[0_23.22%]"><svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.9964 28"><path d={svgPaths.p1036e500} fill="var(--fill-0, #8B52C5)" /></svg></div></a>
-      <a href="https://x.com/funkaborella" target="_blank" rel="noopener noreferrer" className="overflow-clip relative shrink-0 size-[28px]"><div className="absolute inset-[9.38%_5.05%_9.38%_5.06%]"><svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25.1685 22.75"><path d={svgPaths.p3a5fbe00} fill="var(--fill-0, #8B52C5)" /></svg></div></a>
       <a href="https://www.pinterest.com/funkyfriendsfactory/" target="_blank" rel="noopener noreferrer" className="overflow-clip relative shrink-0 size-[28px]"><div className="absolute inset-[1.27%_12.5%_1.25%_12.5%]"><svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 21 27.295"><path d={svgPaths.p3f7cc0} fill="var(--fill-0, #8B52C5)" /></svg></div></a>
       <a href="https://www.instagram.com/funkyfriendsfactory/" target="_blank" rel="noopener noreferrer" className="overflow-clip relative shrink-0 size-[28px]"><div className="absolute inset-[6.22%_6.22%_6.25%_6.24%]"><svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24.5137 24.5082"><path d={svgPaths.p2d77ab80} fill="var(--fill-0, #8B52C5)" /></svg></div></a>
     </div>
@@ -76,21 +74,12 @@ function StarsIllustration() {
   );
 }
 
-function PinCushion() {
-  return (
-    <div className="hidden lg:block absolute bottom-0 left-[69px] w-[165px] h-[176px]" data-name="THIMBLE">
-      <Illustration type="pin-cushion" variant="green" />
-    </div>
-  );
-}
 
 export function CtaFreePattern() {
   return (
     <div className="relative w-full overflow-x-clip" data-name="CTA FREE PATTERN">
       <Content3 />
       <WaveDivider topColor="#bbd148" bottomColor="#fffdf3" height={70} flipY />
-      <StarsIllustration />
-      <PinCushion />
     </div>
   );
 }
