@@ -104,10 +104,14 @@ async function main() {
 
   console.log('\nRunning wrangler d1 execute against remote fff-database...\n');
 
+  // Use explicit npx.cmd on Windows so we can spawn without shell:true.
+  // Node 22 DEP0190 warns against shell:true with arg arrays because the
+  // args aren't shell-escaped — the platform-specific binary avoids that.
+  const npxBinary = process.platform === 'win32' ? 'npx.cmd' : 'npx';
   const result = spawnSync(
-    'npx',
+    npxBinary,
     ['wrangler', 'd1', 'execute', 'fff-database', '--remote', '--file', sqlPath, '--yes'],
-    { stdio: 'inherit', shell: process.platform === 'win32' },
+    { stdio: 'inherit' },
   );
 
   rmSync(tmpDir, { recursive: true, force: true });

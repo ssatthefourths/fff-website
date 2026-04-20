@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { ProductsTab } from './admin/ProductsTab';
 
 type Tab = 'orders' | 'subscribers' | 'products';
 
@@ -116,14 +117,7 @@ export function AdminPage() {
         )}
 
         {/* Products */}
-        {tab === 'products' && !loading && (
-          <div className="bg-white rounded-[20px] shadow-md p-8 text-center">
-            <p className="font-['Bingo_Action_Comic:Regular',sans-serif] text-[#8b52c5] text-[30px] mb-4">Product Management</p>
-            <p className="text-[#3f3f3f] text-[18px]" style={{ fontFamily: "'Roboto:Regular', sans-serif", fontVariationSettings: "'wdth' 100" }}>
-              Products are currently managed via static data files. Database-driven product management coming in the next update.
-            </p>
-          </div>
-        )}
+        {tab === 'products' && <ProductsTab />}
       </div>
     </div>
   );
