@@ -1,12 +1,7 @@
+import { hashPassword, createSession, buildSessionCookie } from '../lib/auth';
+
 interface Env {
   DB: D1Database;
-}
-
-async function hashPassword(password: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -31,17 +26,15 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)'
     ).bind(name, email, password_hash).run();
 
-    // Create simple session token
-    const token = crypto.randomUUID();
+    const userId = Number(result.meta.last_row_id);
+    const token = await createSession(context.env.DB, userId);
 
     return Response.json({
       success: true,
-      user: { id: result.meta.last_row_id, name, email },
+      user: { id: userId, name, email },
       token,
     }, {
-      headers: {
-        'Set-Cookie': `fff_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=604800`,
-      },
+      headers: { 'Set-Cookie': buildSessionCookie(token) },
     });
   } catch (err: any) {
     return Response.json({ error: 'Registration failed', detail: err.message }, { status: 500 });

@@ -35,3 +35,9 @@ ASSETS/
 
 # Wrangler
 .wrangler/
+
+# Reference / tracking material (never commit)
+Issue tracker list.csv
+
+# Local dev vars for wrangler pages dev (secrets go here)
+.dev.vars

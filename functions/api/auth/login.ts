@@ -1,12 +1,7 @@
+import { hashPassword, verifyPassword, createSession, buildSessionCookie } from '../lib/auth';
+
 interface Env {
   DB: D1Database;
-}
-
-async function hashPassword(password: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -20,25 +15,33 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   try {
-    const password_hash = await hashPassword(password);
     const user = await context.env.DB.prepare(
-      'SELECT id, name, email, role FROM users WHERE email = ? AND password_hash = ?'
-    ).bind(email, password_hash).first();
+      'SELECT id, name, email, role, password_hash FROM users WHERE email = ?'
+    ).bind(email).first<{ id: number; name: string; email: string; role: string; password_hash: string }>();
 
     if (!user) {
       return Response.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    const token = crypto.randomUUID();
+    const { valid, needsRehash } = await verifyPassword(password, user.password_hash);
+    if (!valid) {
+      return Response.json({ error: 'Invalid email or password' }, { status: 401 });
+    }
+
+    if (needsRehash) {
+      const fresh = await hashPassword(password);
+      await context.env.DB.prepare('UPDATE users SET password_hash = ?, updated_at = datetime(\'now\') WHERE id = ?')
+        .bind(fresh, user.id).run();
+    }
+
+    const token = await createSession(context.env.DB, user.id);
 
     return Response.json({
       success: true,
       user: { id: user.id, name: user.name, email: user.email, role: user.role },
       token,
     }, {
-      headers: {
-        'Set-Cookie': `fff_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=604800`,
-      },
+      headers: { 'Set-Cookie': buildSessionCookie(token) },
     });
   } catch (err: any) {
     return Response.json({ error: 'Login failed', detail: err.message }, { status: 500 });
