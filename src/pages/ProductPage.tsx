@@ -1,8 +1,11 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
-import { type Pattern, patterns, getPatternBySlug } from '../data/products';
+import type { Pattern } from '../data/products';
 import { categories } from '../data/categories';
 import { useCart } from '../context/CartContext';
+import { fetchProductBySlug, fetchProducts, type ProductDetailResponse } from '../lib/productsApi';
+
+type PatternDetail = ProductDetailResponse['product'];
 
 function getDifficultyBadge(difficulty: Pattern['difficulty']) {
   const styles: Record<string, string> = {
@@ -55,19 +58,42 @@ export function ProductPage() {
   const { slug } = useParams();
   const { addItem, isInCart } = useCart();
 
-  const pattern = useMemo(() => getPatternBySlug(slug || ''), [slug]);
+  const [pattern, setPattern] = useState<PatternDetail | null>(null);
+  const [relatedPatterns, setRelatedPatterns] = useState<Pattern[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const categoryObj = useMemo(
-    () => (pattern ? categories.find((c) => c.slug === pattern.category) : undefined),
-    [pattern],
-  );
+  useEffect(() => {
+    if (!slug) return;
+    const ac = new AbortController();
+    setLoading(true);
+    fetchProductBySlug(slug, ac.signal)
+      .then((p) => { setPattern(p); return p; })
+      .then((p) => {
+        if (!p) return [] as Pattern[];
+        // Load the rest of the category to offer 3–4 related cards.
+        return fetchProducts({ category: p.category, limit: 8, signal: ac.signal });
+      })
+      .then((rest) => {
+        setRelatedPatterns(rest.filter((r) => r.slug !== slug).slice(0, 4));
+      })
+      .catch((err: unknown) => {
+        if (err instanceof DOMException && err.name === 'AbortError') return;
+        // Leave pattern as null so the 404 UI shows.
+        setPattern(null);
+      })
+      .finally(() => setLoading(false));
+    return () => ac.abort();
+  }, [slug]);
 
-  const relatedPatterns = useMemo(() => {
-    if (!pattern) return [];
-    return patterns
-      .filter((p) => p.category === pattern.category && p.id !== pattern.id)
-      .slice(0, 4);
-  }, [pattern]);
+  const categoryObj = pattern ? categories.find((c) => c.slug === pattern.category) : undefined;
+
+  if (loading) {
+    return (
+      <div className="bg-[#fffdf3] min-h-screen flex items-center justify-center">
+        <div className="animate-spin h-10 w-10 border-4 border-[#8b52c5] border-t-transparent rounded-full" />
+      </div>
+    );
+  }
 
   if (!pattern) {
     return (
@@ -232,21 +258,6 @@ export function ProductPage() {
                   What&apos;s Included
                 </h3>
                 <ul className="space-y-3">
-                  {pattern.features?.length
-                    ? pattern.features.map((feature, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 text-[#3f3f3f]"
-                          style={{
-                            fontFamily: "'Roboto:Regular', sans-serif",
-                            fontVariationSettings: "'wdth' 100",
-                          }}
-                        >
-                          <span className="text-[#bbd148] text-lg mt-0.5">&#10003;</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))
-                    : (
                         <>
                           <li
                             className="flex items-start gap-3 text-[#3f3f3f]"
@@ -289,7 +300,6 @@ export function ProductPage() {
                             <span>Suitable for {pattern.difficulty} sewists</span>
                           </li>
                         </>
-                      )}
                 </ul>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { NavItem } from '../../molecules/NavItem';
 import svgPaths from '../../../assets/svgPaths';
 import {
@@ -47,11 +47,15 @@ function FffMainLogo() {
 
 function SearchBar() {
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (query.trim()) {
-      window.location.href = `/patterns?q=${encodeURIComponent(query.trim())}`;
+    const trimmed = query.trim();
+    if (trimmed) {
+      // Client-side nav keeps the app shell + carries the query into
+      // ShopPage's useSearchParams driver (no full reload).
+      navigate(`/patterns?q=${encodeURIComponent(trimmed)}`);
     }
   };
 
