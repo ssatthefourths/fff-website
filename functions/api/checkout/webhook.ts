@@ -16,6 +16,7 @@
 //   - charge.refunded
 
 import { getStripe, getCryptoProvider } from '../lib/stripe';
+import { createGrantsForOrder } from '../lib/grants';
 
 interface Env {
   DB: D1Database;
@@ -58,17 +59,23 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         const orderId = Number(intent.metadata?.orderId ?? 0);
         if (!orderId) break;
 
-        // Idempotent update — only flip pending→paid once; if retried, the
-        // WHERE status = 'pending' guard no-ops.
-        await context.env.DB
+        // Idempotent — only flip pending→paid once; the WHERE guard makes
+        // retries no-ops.
+        const update = await context.env.DB
           .prepare(
             `UPDATE orders
-             SET status = 'paid',
-                 stripe_payment_id = ?
+             SET status = 'paid', stripe_payment_id = ?
              WHERE id = ? AND (status = 'pending' OR status IS NULL)`,
           )
           .bind(intent.id, orderId)
           .run();
+
+        // Only issue download grants the first time we flip to paid. The
+        // unique index on (order_item_id, product_file_id) is a secondary
+        // safety net inside createGrantsForOrder.
+        if (update.meta.changes && update.meta.changes > 0) {
+          await createGrantsForOrder(context.env.DB, orderId);
+        }
         break;
       }
 

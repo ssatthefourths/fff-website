@@ -2,6 +2,127 @@ import { useEffect, useState, type SyntheticEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router';
 import { useAuth } from '../context/AuthContext';
 
+interface OrderItemView {
+  id: number;
+  product_id: number;
+  product_name: string | null;
+  product_slug: string | null;
+  price: number;
+  download: {
+    url: string;
+    expires_at: string | null;
+    downloads_used: number;
+    max_downloads: number;
+  } | null;
+}
+
+interface OrderView {
+  id: number;
+  total: number;
+  status: string;
+  currency: string;
+  created_at: string | null;
+  items: OrderItemView[];
+}
+
+function statusTone(status: string): string {
+  if (status === 'paid' || status === 'completed') return 'bg-[#bbd148] text-[#3f3f3f]';
+  if (status === 'failed' || status === 'cancelled') return 'bg-red-100 text-red-800';
+  if (status === 'refunded') return 'bg-[#f4eefa] text-[#8b52c5]';
+  return 'bg-yellow-100 text-yellow-900';
+}
+
+function OrdersPanel() {
+  const [orders, setOrders] = useState<OrderView[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('/api/orders/me', { credentials: 'include' })
+      .then((r) => r.json() as Promise<{ success?: boolean; orders?: OrderView[]; error?: string }>)
+      .then((data) => {
+        if (!data.success) throw new Error(data.error ?? 'Failed to load orders');
+        setOrders(data.orders ?? []);
+      })
+      .catch((err) => setError(err instanceof Error ? err.message : String(err)));
+  }, []);
+
+  if (error) {
+    return (
+      <div className="bg-red-50 border border-red-200 text-red-800 rounded-[12px] px-4 py-3 text-[14px]">
+        {error}
+      </div>
+    );
+  }
+
+  if (!orders) {
+    return (
+      <div className="bg-[#f4eefa]/50 rounded-[12px] p-4 text-[14px] text-[#3f3f3f]/60">
+        Loading your orders…
+      </div>
+    );
+  }
+
+  if (orders.length === 0) {
+    return (
+      <div className="bg-[#f4eefa]/50 rounded-[12px] p-4 text-[14px] text-[#3f3f3f]/70">
+        No orders yet — once you've made your first purchase, your patterns will appear here.
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h2 className="font-bold text-[#8b52c5] text-[18px] mb-3">Your orders</h2>
+      <ul className="space-y-3">
+        {orders.map((o) => (
+          <li key={o.id} className="border border-[#f4eefa] rounded-[14px] overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 bg-[#f4eefa]/50">
+              <div>
+                <p className="font-bold text-[14px]">Order #{o.id}</p>
+                <p className="text-[12px] text-[#3f3f3f]/60">{o.created_at ?? ''}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[1px] ${statusTone(o.status)}`}>
+                  {o.status}
+                </span>
+                <span className="font-bold">${Number(o.total).toFixed(2)}</span>
+              </div>
+            </div>
+            <ul className="divide-y divide-[#f4eefa]">
+              {o.items.map((it) => (
+                <li key={it.id} className="px-4 py-3 flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-bold truncate">
+                      {it.product_name ?? `Product #${it.product_id}`}
+                    </p>
+                    {it.download && (
+                      <p className="text-[11px] text-[#3f3f3f]/50 mt-0.5">
+                        {it.download.downloads_used}/{it.download.max_downloads} downloads used
+                      </p>
+                    )}
+                  </div>
+                  {it.download && (o.status === 'paid' || o.status === 'completed') ? (
+                    <a
+                      href={it.download.url}
+                      className="shrink-0 px-4 py-2 rounded-[100px] bg-[#8b52c5] text-white text-[12px] font-bold uppercase tracking-[1.5px] hover:brightness-110"
+                    >
+                      Download
+                    </a>
+                  ) : o.status === 'paid' ? (
+                    <span className="shrink-0 text-[12px] text-[#3f3f3f]/50">No file yet</span>
+                  ) : (
+                    <span className="shrink-0 text-[12px] text-[#3f3f3f]/50">—</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 type TabMode = 'login' | 'register';
 
 function AccountPage() {
@@ -121,8 +242,11 @@ function AccountPage() {
               </Link>
             </div>
 
-            <div className="bg-[#f4eefa]/50 rounded-[12px] p-4 text-[14px] text-[#3f3f3f]/70">
-              Your order history and downloads will appear here once you've made your first purchase.
+            <OrdersPanel />
+
+            <div className="bg-[#f4eefa]/50 rounded-[12px] p-4 text-[12px] text-[#3f3f3f]/60">
+              Download links expire 30 days after purchase and each is limited to 10 downloads.
+              If yours has expired, contact us for a fresh link.
             </div>
 
             <button
