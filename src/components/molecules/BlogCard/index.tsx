@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrandImage } from '../../atoms/BrandImage';
 import { Typography } from '../../atoms/Typography';
 import { Button } from '../../atoms/Button';

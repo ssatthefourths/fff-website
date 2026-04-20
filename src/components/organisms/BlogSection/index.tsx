@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import imgUntitledDesign561 from 'figma:asset/c04939546f5c2f4cdcde698bf0467c0bdec3e6da.png';

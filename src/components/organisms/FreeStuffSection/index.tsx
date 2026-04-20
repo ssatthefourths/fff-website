@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRef } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
@@ -16,12 +15,73 @@ function Title() {
   );
 }
 
+interface FreeStuffCardProps {
+  imageSrc: string;
+  title: string;
+  description: string;
+  buttonText: string;
+  to: string;
+}
+
+function FreeStuffCard({ imageSrc, title, description, buttonText, to }: FreeStuffCardProps) {
+  return (
+    <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
+      <div className="bg-white relative rounded-[20px] w-[300px]">
+        <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
+        <div className="flex flex-col items-center size-full">
+          <div className="content-stretch flex flex-col gap-[15px] items-center p-[20px] relative size-full">
+            <div className="aspect-square relative rounded-[5px] shrink-0 w-full overflow-hidden">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imageSrc} />
+            </div>
+            <div className="capitalize flex flex-col font-['Bingo_Action_Comic:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[32px] text-center w-[min-content] min-h-[70px]">
+              <p className="leading-[1.1]">{title}</p>
+            </div>
+            <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[16px] text-center w-[min-content]">
+              <p className="leading-[1.5]">{description}</p>
+            </div>
+            <Link to={to} className="content-stretch flex items-center justify-center px-[30px] py-[14px] relative rounded-[100px] shrink-0 mt-auto hover:bg-[#8b52c5]/10 hover:scale-[1.02] transition-[transform,background-color] duration-200" data-name="Button">
+              <div aria-hidden="true" className="absolute border-2 border-[#8b52c5] border-solid inset-0 pointer-events-none rounded-[100px]" />
+              <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[16px] text-center tracking-[2px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[normal]">{buttonText}</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const CARDS: FreeStuffCardProps[] = [
+  {
+    imageSrc: imgScreenshot20240311At1201,
+    title: 'Start with a free pattern',
+    description: "It's EASY! Just sign up for my email Newsletter and I'll give you a thank you gift! I'll give you my Honey Teddy Pattern for FREE!",
+    buttonText: 'get the pattern',
+    to: '/beginners',
+  },
+  {
+    imageSrc: imgScreenshot20240311At1202,
+    title: 'Video: How I made Honey Teddy',
+    description: "I have a video of making my Honey Teddy – so you can see how it's done and get to see the basics of sewing softies!",
+    buttonText: 'watch the video',
+    to: '/beginners',
+  },
+  {
+    imageSrc: imgScreenshot20240311At1203,
+    title: 'Toy-Making Class',
+    description: 'If you want to find out ALL you need to know – to get started sewing soft toys – this course is for YOU!',
+    buttonText: 'sign up for free',
+    to: '/beginners',
+  },
+];
+
 function ContentSideScroller() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 429, behavior: 'smooth' });
+  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
 
   return (
-    <div className="content-stretch flex gap-[30px] items-center justify-center relative shrink-0 w-full max-w-[1440px]" data-name="CONTENT SIDE SCROLLER">
+    <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0 w-full max-w-[1440px]" data-name="CONTENT SIDE SCROLLER">
       <button onClick={() => scroll(-1)} className="h-[40px] relative shrink-0 w-[20px] cursor-pointer hover:scale-110 transition-transform" data-name="LEFT ARROW" aria-label="Scroll left">
         <div className="absolute inset-[-6.25%_-12.5%_-6.25%_-17.68%]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26.0355 45">
@@ -29,55 +89,10 @@ function ContentSideScroller() {
           </svg>
         </div>
       </button>
-      <div ref={scrollRef} className="flex gap-[30px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0 px-4 scroll-px-4">
-      <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 1">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[27px] items-center p-[30px] relative size-full">
-              <div className="relative rounded-[20px] shrink-0 size-[200px] sm:size-[280px]"><img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgScreenshot20240311At1201} /></div>
-              <div className="capitalize flex flex-col font-['Bingo_Action_Comic:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[50px] text-center w-[min-content] min-h-[110px]"><p className="leading-[1.1]">Start with a free pattern</p></div>
-              <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-[min-content]"><p className="leading-[1.6]">It's EASY! Just sign up for my email Newsletter and I'll give you a thank you gift! I'll give you my Honey Teddy Pattern for FREE!</p></div>
-              <Link to="/beginners" className="content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 mt-auto hover:bg-[#8b52c5]/10 hover:scale-[1.02] transition-[transform,background-color] duration-200" data-name="Button">
-                <div aria-hidden="true" className="absolute border-2 border-[#8b52c5] border-solid inset-0 pointer-events-none rounded-[100px]" />
-                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}><p className="leading-[normal]">get the pattern</p></div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 2">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[27px] items-center p-[30px] relative size-full">
-              <div className="relative rounded-[20px] shrink-0 size-[200px] sm:size-[280px]"><div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]"><img alt="" className="absolute h-full left-[-0.09%] max-w-none top-0 w-[150.66%]" src={imgScreenshot20240311At1202} /></div></div>
-              <div className="capitalize flex flex-col font-['Bingo_Action_Comic:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[50px] text-center w-[min-content] min-h-[110px]"><p className="leading-[1.1]">Video: How I made Honey Teddy</p></div>
-              <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-[min-content]"><p className="leading-[1.6]">I have a video of making my Honey Teddy – so you can see how it's done and get to see the basics of sewing softies!</p></div>
-              <Link to="/beginners" className="content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 mt-auto hover:bg-[#8b52c5]/10 hover:scale-[1.02] transition-[transform,background-color] duration-200" data-name="Button">
-                <div aria-hidden="true" className="absolute border-2 border-[#8b52c5] border-solid inset-0 pointer-events-none rounded-[100px]" />
-                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}><p className="leading-[normal]">watch the video</p></div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
-        <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 3">
-          <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
-          <div className="flex flex-col items-center size-full">
-            <div className="content-stretch flex flex-col gap-[27px] items-center p-[30px] relative size-full">
-              <div className="relative rounded-[20px] shrink-0 size-[200px] sm:size-[280px]"><img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgScreenshot20240311At1203} /></div>
-              <div className="capitalize flex flex-col font-['Bingo_Action_Comic:Regular',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#8b52c5] text-[50px] text-center w-[min-content] min-h-[110px]"><p className="leading-[1.1]">Toy-Making Class</p></div>
-              <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#3f3f3f] text-[18px] text-center w-[min-content]"><p className="leading-[1.6]">If you want to find out ALL you need to know – to get started sewing soft toys – this course is for YOU!</p></div>
-              <Link to="/beginners" className="content-stretch flex items-center justify-center px-[40px] py-[20px] relative rounded-[100px] shrink-0 mt-auto hover:bg-[#8b52c5]/10 hover:scale-[1.02] transition-[transform,background-color] duration-200" data-name="Button">
-                <div aria-hidden="true" className="absolute border-2 border-[#8b52c5] border-solid inset-0 pointer-events-none rounded-[100px]" />
-                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#8b52c5] text-[18px] text-center tracking-[2.7px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}><p className="leading-[normal]">sign up for free</p></div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div ref={scrollRef} className="flex gap-[20px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0 px-4 scroll-px-4">
+        {CARDS.map((card) => (
+          <FreeStuffCard key={card.title} {...card} />
+        ))}
       </div>
       <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
         <div className="flex-none rotate-180">
@@ -104,8 +119,6 @@ function Content1() {
     </div>
   );
 }
-
-
 
 export function FreeStuffSection() {
   return (

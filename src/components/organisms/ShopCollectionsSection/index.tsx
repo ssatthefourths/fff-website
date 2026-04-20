@@ -1,6 +1,5 @@
-import React from 'react';
-import { WaveDivider } from '../../ui/WaveDivider';
 import { useRef, useState } from 'react';
+import { WaveDivider } from '../../ui/WaveDivider';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import { patterns } from '../../../data/products';

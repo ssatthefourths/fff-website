@@ -1,4 +1,3 @@
-import React from 'react';
 import { WaveDivider } from '../../ui/WaveDivider';
 import { useRef } from 'react';
 import { Link } from 'react-router';
@@ -99,60 +98,6 @@ function ContentSideScroller1() {
     </div>
   );
 }
-
-function _Unused_OriginalFrame18() {
-  return (
-    <div className="content-stretch flex flex-col gap-[8px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-[26px] text-center w-full">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Melissa Cochrane</p>
-      </div>
-      <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Bumble the Bee</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame19() {
-  return (
-    <div className="content-stretch flex flex-col gap-[8px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-[26px] text-center w-full">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Mary Shaw</p>
-      </div>
-      <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Harmony Highland Cow</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame20() {
-  return (
-    <div className="content-stretch flex flex-col gap-[8px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-[26px] text-center w-full">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Maggie Durham</p>
-      </div>
-      <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Harmony Highland Cow</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame21() {
-  return (
-    <div className="content-stretch flex flex-col gap-[8px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-[26px] text-center w-full">
-      <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Janet O'Neil-Conlon</p>
-      </div>
-      <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Horsey Horse Unicorn</p>
-      </div>
-    </div>
-  );
-}
-
-/* Old hardcoded ContentSideScroller1 removed — now dynamic above */
 
 function Column() {
   return (

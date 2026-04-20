@@ -1,7 +1,5 @@
-import React from 'react';
 import svgPaths from '../../../assets/svgPaths';
 import { WaveDivider } from '../../ui/WaveDivider';
-import { imgGroup4 } from '../../../imports/svg-9news';
 
 function Socials() {
   return (
@@ -33,43 +31,6 @@ function Content3() {
       </div>
       <Socials />
       </div>
-    </div>
-  );
-}
-
-
-function Group4() {
-  return (
-    <div className="absolute inset-0 mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-0.003px_-0.001px] mask-size-[121px_92px]" style={{ maskImage: `url('${imgGroup4}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 120.998 91.9981">
-        <g id="Group">
-          <path d={svgPaths.p2124e300} fill="var(--fill-0, black)" id="Vector" />
-          <path d={svgPaths.p1d9b6fe0} fill="var(--fill-0, black)" id="Vector_2" />
-          <path d={svgPaths.pe264880} fill="var(--fill-0, black)" id="Vector_3" />
-          <path d={svgPaths.p3c7bf000} fill="var(--fill-0, black)" id="Vector_4" />
-          <path d={svgPaths.p1006e00} fill="var(--fill-0, black)" id="Vector_5" />
-          <path d={svgPaths.p3a41ab80} fill="var(--fill-0, black)" id="Vector_6" />
-          <path d={svgPaths.p3b91e780} fill="var(--fill-0, black)" id="Vector_7" />
-          <path d={svgPaths.p1fb88bc0} fill="var(--fill-0, black)" id="Vector_8" />
-          <path d={svgPaths.pee2b800} fill="var(--fill-0, black)" id="Vector_9" />
-          <path d={svgPaths.p28ad9700} fill="var(--fill-0, black)" id="Vector_10" />
-          <path d={svgPaths.p12f4b00} fill="var(--fill-0, black)" id="Vector_11" />
-          <path d={svgPaths.p24792600} fill="var(--fill-0, black)" id="Vector_12" />
-          <path d={svgPaths.p11274500} fill="var(--fill-0, black)" id="Vector_13" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup4() {
-  return (<div className="absolute contents inset-0" data-name="Clip path group"><Group4 /></div>);
-}
-
-function StarsIllustration() {
-  return (
-    <div className="hidden lg:block absolute bottom-[230px] right-[36px] w-[121px] h-[92px] overflow-clip" data-name="STARS ILLUSTRATION">
-      <ClipPathGroup4 />
     </div>
   );
 }
