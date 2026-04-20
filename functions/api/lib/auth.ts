@@ -124,15 +124,18 @@ export function buildClearSessionCookie(): string {
 }
 
 // ─── Admin auth guard ─────────────────────────────────────────────────────────
-// Cloudflare Access (Zero Trust) sits in front of /api/admin/* and injects the
-// Cf-Access-Authenticated-User-Email header on authenticated requests. Absence
-// of the header means the request bypassed Access (misconfigured) or is local
-// dev. In production we require it.
-export function requireAdmin(request: Request, env: { ENVIRONMENT?: string } = {}): Response | null {
-  const email = request.headers.get('Cf-Access-Authenticated-User-Email');
-  if (email) return null; // allowed
-  if (env.ENVIRONMENT === 'development') return null; // local dev bypass
-  return Response.json({ error: 'Admin access required' }, { status: 403 });
+// Two auth paths for admin routes:
+//   (a) Cloudflare Access header Cf-Access-Authenticated-User-Email — when CF
+//       Access is configured in the dashboard, the header is present for any
+//       request that passed Access's email-verification flow.
+//   (b) Session-based: the fff_session cookie resolves to a user with
+//       role = 'admin' in the users table.
+// Either is sufficient. Use (a) for hardened production; (b) works out of the
+// box without dashboard config.
+export async function getAdminUser(db: D1Database, request: Request): Promise<SessionUser | null> {
+  const token = getSessionCookie(request);
+  const user = await getSessionUser(db, token);
+  return user && user.role === 'admin' ? user : null;
 }
 
 export function getAdminEmail(request: Request): string | null {

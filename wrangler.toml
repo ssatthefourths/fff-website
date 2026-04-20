@@ -7,8 +7,6 @@ binding = "DB"
 database_name = "fff-database"
 database_id = "7304ca70-8328-47d6-a6a3-260b3eb76c47"
 
-# R2 binding added in Phase 2. Requires R2 to be enabled on the Cloudflare account first
-# (dashboard → R2 Object Storage → Enable). Then: wrangler r2 bucket create fff-assets
-# [[r2_buckets]]
-# binding = "R2"
-# bucket_name = "fff-assets"
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "fff-assets"

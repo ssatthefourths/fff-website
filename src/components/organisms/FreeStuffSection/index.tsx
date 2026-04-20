@@ -18,7 +18,7 @@ function Title() {
 
 function ContentSideScroller() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 420, behavior: 'smooth' });
+  const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 429, behavior: 'smooth' });
 
   return (
     <div className="content-stretch flex gap-[30px] items-center justify-center relative shrink-0 w-full max-w-[1440px]" data-name="CONTENT SIDE SCROLLER">
@@ -29,8 +29,8 @@ function ContentSideScroller() {
           </svg>
         </div>
       </button>
-      <div ref={scrollRef} className="flex gap-[30px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0">
-      <div className="flex flex-row items-stretch self-stretch shrink-0">
+      <div ref={scrollRef} className="flex gap-[30px] overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0 px-4 scroll-px-4">
+      <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
         <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 1">
           <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
           <div className="flex flex-col items-center size-full">
@@ -46,7 +46,7 @@ function ContentSideScroller() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-stretch self-stretch shrink-0">
+      <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
         <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 2">
           <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
           <div className="flex flex-col items-center size-full">
@@ -62,7 +62,7 @@ function ContentSideScroller() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-stretch self-stretch shrink-0">
+      <div className="flex flex-row items-stretch self-stretch shrink-0 snap-start">
         <div className="bg-white h-full relative rounded-[20px] shrink-0 w-[min(399px,85vw)]" data-name="CARD 3">
           <div aria-hidden="true" className="absolute border-3 border-[#8b52c5] border-dashed inset-0 pointer-events-none rounded-[20px]" />
           <div className="flex flex-col items-center size-full">
