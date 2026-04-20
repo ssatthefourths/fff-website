@@ -101,6 +101,18 @@ export function CheckoutPage() {
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
 
+  // Discount code state. The `applied` object is the server's acknowledgement
+  // that the code is valid for the current subtotal — we don't trust client-
+  // computed discounts anywhere (create-intent re-validates authoritatively).
+  const [discountInput, setDiscountInput] = useState('');
+  const [applied, setApplied] = useState<{ code: string; discount_cents: number } | null>(null);
+  const [discountError, setDiscountError] = useState<string | null>(null);
+  const [applyingCode, setApplyingCode] = useState(false);
+
+  const subtotalCents = Math.round(total * 100);
+  const discountCents = applied?.discount_cents ?? 0;
+  const grandTotalCents = Math.max(0, subtotalCents - discountCents);
+
   // Prefill from auth if logged in.
   useEffect(() => {
     if (user) {
@@ -131,6 +143,7 @@ export function CheckoutPage() {
           customer_name: customerName.trim(),
           customer_email: customerEmail.trim(),
           items: items.map((p) => ({ product_id: parseInt(p.id, 10) })),
+          ...(applied ? { discount_code: applied.code } : {}),
         }),
       });
       const data = (await res.json()) as CreateIntentResponse;
@@ -160,6 +173,44 @@ export function CheckoutPage() {
     () => (publishableKey ? stripeFor(publishableKey) : null),
     [publishableKey],
   );
+
+  async function applyDiscount() {
+    const code = discountInput.trim();
+    if (!code) return;
+    setApplyingCode(true);
+    setDiscountError(null);
+    try {
+      const res = await fetch('/api/discounts/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, subtotal_cents: subtotalCents }),
+      });
+      const data = (await res.json()) as {
+        success?: boolean;
+        code?: string;
+        discount_cents?: number;
+        message?: string;
+        error?: string;
+      };
+      if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
+      if (!data.success) {
+        setApplied(null);
+        setDiscountError(data.message ?? 'That code did not work.');
+        return;
+      }
+      setApplied({ code: data.code ?? code.toUpperCase(), discount_cents: data.discount_cents ?? 0 });
+      setDiscountInput('');
+    } catch (err) {
+      setDiscountError(err instanceof Error ? err.message : 'Unable to apply code');
+    } finally {
+      setApplyingCode(false);
+    }
+  }
+
+  function clearDiscount() {
+    setApplied(null);
+    setDiscountError(null);
+  }
 
   // ── Empty cart ──────────────────────────────────────────────────
   if (itemCount === 0) {
@@ -220,6 +271,56 @@ export function CheckoutPage() {
                         />
                       </div>
                     </div>
+                  </div>
+
+                  <div className="bg-white rounded-[20px] shadow-md p-6 mb-6">
+                    <h2 className="text-xl font-bold text-[#3f3f3f] mb-4" style={{ fontFamily: "'Roboto:Regular', sans-serif", fontVariationSettings: "'wdth' 100" }}>
+                      Discount code
+                    </h2>
+                    {applied ? (
+                      <div className="flex items-center justify-between bg-[#f4eefa] border border-[#8b52c5]/30 rounded-[12px] px-4 py-3">
+                        <div>
+                          <p className="font-mono font-bold text-[#8b52c5]">{applied.code}</p>
+                          <p className="text-[12px] text-[#3f3f3f]/60 mt-0.5">
+                            −${(applied.discount_cents / 100).toFixed(2)} applied
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={clearDiscount}
+                          className="text-[12px] text-[#8b52c5] hover:underline cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={discountInput}
+                            onChange={(e) => { setDiscountInput(e.target.value); setDiscountError(null); }}
+                            onKeyDown={(e) => {
+                              // Allow submit via Enter without bubbling to the outer form.
+                              if (e.key === 'Enter') { e.preventDefault(); void applyDiscount(); }
+                            }}
+                            placeholder="e.g. WELCOME10"
+                            className="flex-1 px-4 py-3 rounded-[12px] border border-[#3f3f3f]/20 text-[#3f3f3f] font-mono uppercase focus:outline-none focus:border-[#8b52c5] focus:ring-2 focus:ring-[#8b52c5]/20 transition-all"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => { void applyDiscount(); }}
+                            disabled={applyingCode || !discountInput.trim()}
+                            className="px-5 py-3 rounded-[12px] bg-[#8b52c5] text-white font-bold text-[14px] tracking-[1.5px] uppercase hover:brightness-110 disabled:opacity-50 cursor-pointer"
+                          >
+                            {applyingCode ? 'Checking…' : 'Apply'}
+                          </button>
+                        </div>
+                        {discountError && (
+                          <p className="mt-2 text-[13px] text-red-700">{discountError}</p>
+                        )}
+                      </>
+                    )}
                   </div>
 
                   {error && (
@@ -295,9 +396,22 @@ export function CheckoutPage() {
                   ))}
                 </ul>
                 <hr className="border-[#f4eefa] mb-4" />
+                {applied && (
+                  <>
+                    <div className="flex justify-between items-center text-sm text-[#3f3f3f] mb-2">
+                      <span>Subtotal</span>
+                      <span>${total.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-[#8b52c5] mb-3">
+                      <span>Discount <span className="font-mono text-[11px] bg-[#f4eefa] px-1.5 py-0.5 rounded ml-1">{applied.code}</span></span>
+                      <span className="font-bold">−${(applied.discount_cents / 100).toFixed(2)}</span>
+                    </div>
+                    <hr className="border-[#f4eefa] mb-3" />
+                  </>
+                )}
                 <div className="flex justify-between items-center text-xl font-bold text-[#3f3f3f]">
                   <span>Total</span>
-                  <span className="text-[#8b52c5]">${total.toFixed(2)}</span>
+                  <span className="text-[#8b52c5]">${(grandTotalCents / 100).toFixed(2)}</span>
                 </div>
               </div>
             </div>

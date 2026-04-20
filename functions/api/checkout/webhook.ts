@@ -70,11 +70,35 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           .bind(intent.id, orderId)
           .run();
 
-        // Only issue download grants the first time we flip to paid. The
-        // unique index on (order_item_id, product_file_id) is a secondary
-        // safety net inside createGrantsForOrder.
+        // Only run side-effects the first time we flip to paid. The unique
+        // index on (order_item_id, product_file_id) is a secondary safety
+        // net inside createGrantsForOrder.
         if (update.meta.changes && update.meta.changes > 0) {
           await createGrantsForOrder(context.env.DB, orderId);
+
+          // Record the discount usage + bump the code's uses_count so the
+          // max_uses cap is enforced for future applies. Best-effort: if
+          // the row was already inserted by a retry that beat the WHERE
+          // guard, the batch still succeeds.
+          const order = await context.env.DB
+            .prepare('SELECT discount_code_id FROM orders WHERE id = ?')
+            .bind(orderId)
+            .first<{ discount_code_id: number | null }>();
+          if (order?.discount_code_id) {
+            await context.env.DB.batch([
+              context.env.DB
+                .prepare(
+                  `INSERT INTO discount_usages (discount_code_id, order_id)
+                   SELECT ?, ? WHERE NOT EXISTS (
+                     SELECT 1 FROM discount_usages WHERE order_id = ?
+                   )`,
+                )
+                .bind(order.discount_code_id, orderId, orderId),
+              context.env.DB
+                .prepare('UPDATE discount_codes SET uses_count = uses_count + 1 WHERE id = ?')
+                .bind(order.discount_code_id),
+            ]);
+          }
         }
         break;
       }

@@ -17,6 +17,7 @@
 import { z } from 'zod';
 import { getStripe } from '../lib/stripe';
 import { getSessionUser, getSessionCookie } from '../lib/auth';
+import { loadDiscountCode, validateAndCalculate, isDiscountFailure } from '../lib/discounts';
 
 interface Env {
   DB: D1Database;
@@ -29,6 +30,7 @@ const bodySchema = z.object({
   items: z.array(z.object({
     product_id: z.number().int().positive(),
   })).min(1).max(50),
+  discount_code: z.string().trim().min(1).max(50).optional(),
 });
 
 interface ProductPriceRow {
@@ -54,7 +56,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   if (!parsed.success) {
     return Response.json({ error: 'Validation failed', issues: parsed.error.issues }, { status: 400 });
   }
-  const { customer_name, customer_email, items } = parsed.data;
+  const { customer_name, customer_email, items, discount_code } = parsed.data;
 
   // Re-fetch authoritative prices from the DB. The client cart is NEVER the
   // source of truth for how much we charge.
@@ -78,7 +80,26 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     const unitCents = row.is_free ? 0 : Math.round(Number(row.price) * 100);
     return { product_id: row.id, name: row.name, unit_cents: unitCents };
   });
-  const totalCents = lineItems.reduce((sum, li) => sum + li.unit_cents, 0);
+  const subtotalCents = lineItems.reduce((sum, li) => sum + li.unit_cents, 0);
+
+  // ─── Discount (optional) ──────────────────────────────────────────
+  // Authoritative pass — the /api/discounts/apply preview is advisory only.
+  let discountCents = 0;
+  let discountCodeId: number | null = null;
+  if (discount_code) {
+    const row = await loadDiscountCode(context.env.DB, discount_code);
+    if (!row) {
+      return Response.json({ error: "That discount code doesn't exist." }, { status: 400 });
+    }
+    const result = validateAndCalculate(row, subtotalCents);
+    if (isDiscountFailure(result)) {
+      return Response.json({ error: result.message }, { status: 400 });
+    }
+    discountCents = result.discount_cents;
+    discountCodeId = result.code.id;
+  }
+
+  const totalCents = Math.max(0, subtotalCents - discountCents);
   const totalDollars = totalCents / 100;
 
   // Optional: link the order to the logged-in user, otherwise it's a guest
@@ -90,10 +111,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const orderInsert = await context.env.DB
     .prepare(
       `INSERT INTO orders (user_id, customer_name, customer_email, total, status,
-         subtotal_cents, currency)
-       VALUES (?, ?, ?, ?, 'pending', ?, 'AUD')`,
+         subtotal_cents, discount_cents, discount_code_id, currency)
+       VALUES (?, ?, ?, ?, 'pending', ?, ?, ?, 'AUD')`,
     )
-    .bind(userId, customer_name, customer_email, totalDollars, totalCents)
+    .bind(userId, customer_name, customer_email, totalDollars, subtotalCents, discountCents, discountCodeId)
     .run();
   const orderId = Number(orderInsert.meta.last_row_id);
 
