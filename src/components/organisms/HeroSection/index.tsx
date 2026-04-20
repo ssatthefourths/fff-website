@@ -9,7 +9,7 @@ function HeadingBlockHeroSection() {
       <p className="capitalize font-['Bingo_Action_Comic:Regular',sans-serif] leading-none not-italic relative shrink-0 text-[#fdf8e0] text-[clamp(48px,6.6vw,95px)] w-full lg:w-[616px]">
         {`Come sew with our `}<span className="font-['Magic_Honey_Bold:Regular',sans-serif] text-[#bbd148] text-[clamp(44px,5.97vw,86px)]">fabulously</span>{` FUN community!`}
       </p>
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#fffdf3] text-[clamp(16px,1.8vw,26px)] text-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-full lg:w-[522px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] relative shrink-0 text-[#fffdf3] text-[clamp(16px,1.8vw,26px)] w-full lg:w-[522px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         The place to find fun, easy-to-follow Soft Toy Sewing Patterns, step-by-step photo tutorials, lots of toy-making tips and tutorials to help you sew the cutest Soft Toys EVER! Come join the FUN!!!!
       </p>
     </div>
