@@ -27,6 +27,7 @@ const ProductsTab = lazy(() => import('../pages/admin/ProductsTab'));
 const OrdersTab = lazy(() => import('../pages/admin/OrdersTab'));
 const NewsletterTab = lazy(() => import('../pages/admin/NewsletterTab'));
 const DiscountsTab = lazy(() => import('../pages/admin/DiscountsTab'));
+const MakersTab = lazy(() => import('../pages/admin/MakersTab'));
 const BlogTab = lazy(() => import('../pages/admin/BlogTab'));
 
 function PageLoader() {
@@ -72,6 +73,7 @@ export default function App() {
                 <Route path="products" element={<ProductsTab />} />
                 <Route path="orders" element={<OrdersTab />} />
                 <Route path="discounts" element={<DiscountsTab />} />
+                <Route path="makers" element={<MakersTab />} />
                 <Route path="blog" element={<BlogTab />} />
                 <Route path="newsletter" element={<NewsletterTab />} />
               </Route>

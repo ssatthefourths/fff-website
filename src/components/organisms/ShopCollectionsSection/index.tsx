@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { WaveDivider } from '../../ui/WaveDivider';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
-import { patterns } from '../../../data/products';
+import type { Pattern } from '../../../data/products';
+import { fetchProducts } from '../../../lib/productsApi';
 import imgFrame256 from 'figma:asset/c9712d88d9a9a431f7fb17b4a516a3a946e53ee0.png';
 import imgFrame257 from 'figma:asset/ddd96d147d6704729dbdbb04809e812f4d2508eb.png';
 import { imgGroup7, imgGroup8, imgGroup9 } from '../../../imports/svg-9news';
@@ -46,10 +47,10 @@ function Text2() {
 }
 
 const TABS = [
-  { key: 'featured', label: 'best sellers', filter: (p: typeof patterns[0]) => p.isFeatured },
-  { key: 'beginner', label: 'beginner friendly', filter: (p: typeof patterns[0]) => p.difficulty === 'beginner' },
-  { key: 'seasonal', label: 'seasonal', filter: (p: typeof patterns[0]) => p.category === 'seasonal' },
-  { key: 'new', label: 'new', filter: (p: typeof patterns[0]) => p.isNew },
+  { key: 'featured', label: 'best sellers', filter: (p: Pattern) => p.isFeatured },
+  { key: 'beginner', label: 'beginner friendly', filter: (p: Pattern) => p.difficulty === 'beginner' },
+  { key: 'seasonal', label: 'seasonal', filter: (p: Pattern) => p.category === 'seasonal' },
+  { key: 'new', label: 'new', filter: (p: Pattern) => p.isNew },
 ] as const;
 
 const TAB_TITLES: Record<string, { title: string; subtitle: string }> = {
@@ -66,8 +67,20 @@ function DrawersContent() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 290, behavior: 'smooth' });
 
+  // Fetch every product once — the four tab filters run client-side against
+  // the same cached list. The shop catalogue is small enough that this is
+  // cheaper than firing a request per tab click, and much snappier.
+  const [allProducts, setAllProducts] = useState<Pattern[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetchProducts({ limit: 500 })
+      .then((rows) => { if (!cancelled) setAllProducts(rows); })
+      .catch(() => { if (!cancelled) setAllProducts([]); });
+    return () => { cancelled = true; };
+  }, []);
+
   const tab = TABS.find(t => t.key === activeTab) ?? TABS[2];
-  const filteredProducts = patterns.filter(tab.filter);
+  const filteredProducts = (allProducts ?? []).filter(tab.filter);
   const info = TAB_TITLES[activeTab] ?? TAB_TITLES.seasonal;
 
   return (
@@ -112,6 +125,14 @@ function DrawersContent() {
           </button>
 
           <div ref={scrollRef} className="overflow-x-auto scroll-smooth flex gap-[30px] items-start w-full snap-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {allProducts === null && (
+              <div className="shrink-0 w-full text-center text-[#3f3f3f]/50 text-[14px] py-12">Loading patterns…</div>
+            )}
+            {allProducts !== null && filteredProducts.length === 0 && (
+              <div className="shrink-0 w-full text-center text-[#3f3f3f]/50 text-[14px] py-12">
+                No patterns in this category yet.
+              </div>
+            )}
             {filteredProducts.map((product, i) => (
               <Link
                 key={product.id}

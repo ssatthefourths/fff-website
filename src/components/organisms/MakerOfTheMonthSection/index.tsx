@@ -1,14 +1,25 @@
 import { WaveDivider } from '../../ui/WaveDivider';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import imgScreenshot20240311At1204 from 'figma:asset/a68f87b1b02b49aea545440ae371b307daed5e2c.png';
 import imgScreenshot20240311At1205 from 'figma:asset/f704291322bd77ffa3c361b50df9a87f66c6db7b.png';
 import imgUntitledDesign563 from 'figma:asset/f4e5f466ccd0fafd0b969fb06c776feae7507b11.png';
 import imgUntitledDesign561 from 'figma:asset/c04939546f5c2f4cdcde698bf0467c0bdec3e6da.png';
-import { makers } from '../../../data/makers';
 
-const MAKER_IMAGES = [imgScreenshot20240311At1204, imgScreenshot20240311At1205, imgUntitledDesign563, imgUntitledDesign561];
+// Figma placeholder images are used as fallback when an admin-entered maker
+// hasn't had a photo uploaded yet. Once photo_r2_key is set, the real image
+// comes from /r2/images/makers/... via the public R2 proxy.
+const FALLBACK_IMAGES = [imgScreenshot20240311At1204, imgScreenshot20240311At1205, imgUntitledDesign563, imgUntitledDesign561];
+
+interface MakerApi {
+  id: number;
+  name: string;
+  pattern_name: string;
+  month: string;
+  year: number;
+  photo_url: string | null;
+}
 
 function BgPatch1() {
   return (
@@ -69,6 +80,14 @@ function MakerCard({ name, patternName, imgSrc }: { name: string; patternName: s
 function ContentSideScroller1() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scroll = (dir: number) => scrollRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
+  const [makers, setMakers] = useState<MakerApi[] | null>(null);
+
+  useEffect(() => {
+    fetch('/api/makers')
+      .then((r) => r.json() as Promise<{ success?: boolean; makers?: MakerApi[] }>)
+      .then((d) => setMakers(d.makers ?? []))
+      .catch(() => setMakers([]));
+  }, []);
 
   return (
     <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0 w-full" data-name="CONTENT SIDE SCROLLER">
@@ -80,9 +99,17 @@ function ContentSideScroller1() {
         </div>
       </button>
       <div ref={scrollRef} className="flex gap-[20px] overflow-x-auto scroll-smooth snap-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-1 min-w-0">
-        {makers.map((maker, i) => (
-          <MakerCard key={maker.id} name={maker.name} patternName={maker.patternName} imgSrc={MAKER_IMAGES[i % MAKER_IMAGES.length]} />
+        {(makers ?? []).map((maker, i) => (
+          <MakerCard
+            key={maker.id}
+            name={maker.name}
+            patternName={maker.pattern_name}
+            imgSrc={maker.photo_url ?? FALLBACK_IMAGES[i % FALLBACK_IMAGES.length]}
+          />
         ))}
+        {makers && makers.length === 0 && (
+          <div className="shrink-0 text-[#3f3f3f]/50 text-[14px] py-8 px-4">No makers for this month yet.</div>
+        )}
       </div>
       <button onClick={() => scroll(1)} className="flex items-center justify-center relative shrink-0 cursor-pointer hover:scale-110 transition-transform" aria-label="Scroll right">
         <div className="flex-none rotate-180">

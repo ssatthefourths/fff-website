@@ -1,9 +1,16 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import svgPaths from '../../../assets/svgPaths';
 import imgUntitledDesign561 from 'figma:asset/c04939546f5c2f4cdcde698bf0467c0bdec3e6da.png';
 import imgUntitledDesign562 from 'figma:asset/c7cb7de78756b698f03f3c5ee1df7454f03f49fd.png';
 import imgUntitledDesign563 from 'figma:asset/f4e5f466ccd0fafd0b969fb06c776feae7507b11.png';
 import { imgGroup } from '../../../imports/svg-9news';
+import { fetchBlogPosts, type BlogPostSummary } from '../../../lib/blogApi';
+
+// Figma stock images as fallbacks while a real cover hasn't been uploaded.
+// Ordered so the newest post gets card1/card2/card3 styling. When blog posts
+// eventually carry a cover_r2_key, swap this out for /r2/... URLs.
+const CARD_IMAGES = [imgUntitledDesign561, imgUntitledDesign562, imgUntitledDesign563];
 
 function Group() {
   return (
@@ -34,68 +41,58 @@ function BgPatch() {
   );
 }
 
-function Frame15() {
+function BlogCardText({ title, excerpt }: { title: string; excerpt: string | null | undefined }) {
   return (
     <div className="content-stretch flex flex-col gap-[15px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-center w-full">
       <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 text-[26px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Easter Sewing Competition 2026 Winner</p>
+        <p className="leading-[1.4] line-clamp-2">{title}</p>
       </div>
-      <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center not-italic relative shrink-0 text-[18px] w-full">
-        <p className="leading-[1.6]">See the amazing entries in our Easter sewing competition! The creativity and skill on display this year was truly incredible.</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame16() {
-  return (
-    <div className="content-stretch flex flex-col gap-[15px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-center w-full">
-      <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 text-[26px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Best Wishes Baby Bird Pattern</p>
-      </div>
-      <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center not-italic relative shrink-0 text-[18px] w-full">
-        <p className="leading-[1.6]">Introducing our newest pattern! The Best Wishes Baby Bird is perfect for baby showers and makes a wonderful keepsake gift.</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame17() {
-  return (
-    <div className="content-stretch flex flex-col gap-[15px] items-start leading-[0] relative shrink-0 text-[#3f3f3f] text-center w-full">
-      <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center relative shrink-0 text-[26px] w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[1.4]">Maker of the Month — January 2026</p>
-      </div>
-      <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center not-italic relative shrink-0 text-[18px] w-full">
-        <p className="leading-[1.6]">Meet this month's Super Softie Seller! Find out who won and see their fabulous handmade Funky Friends.</p>
-      </div>
+      {excerpt && (
+        <div className="flex flex-col font-['Avenir:Book',sans-serif] justify-center not-italic relative shrink-0 text-[18px] w-full">
+          <p className="leading-[1.6] line-clamp-3">{excerpt}</p>
+        </div>
+      )}
     </div>
   );
 }
 
 function BlogCards() {
+  const [posts, setPosts] = useState<BlogPostSummary[] | null>(null);
+
+  useEffect(() => {
+    // The API returns posts newest-first; take the first 3 for this homepage strip.
+    fetchBlogPosts()
+      .then((all) => setPosts(all.slice(0, 3)))
+      .catch(() => setPosts([]));
+  }, []);
+
   return (
     <div className="content-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-[40px] items-start relative shrink-0 w-full" data-name="BLOG CARDS">
-      <Link to="/blog/easter-sewing-competition-2026-winner" className="content-stretch flex flex-[1_0_0] flex-col gap-[36px] items-center min-h-px min-w-px relative hover:shadow-lg hover:-translate-y-1 transition-all duration-200 rounded-[20px]" data-name="CARD 1">
-        <div className="h-[200px] sm:h-[250px] lg:h-[305px] relative rounded-[20px] shrink-0 w-full" data-name="Untitled design (56) 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgUntitledDesign561} />
+      {posts === null && (
+        <div className="col-span-full text-center text-[#3f3f3f]/50 text-[14px] py-8">Loading recent posts…</div>
+      )}
+      {posts !== null && posts.length === 0 && (
+        <div className="col-span-full text-center text-[#3f3f3f]/50 text-[14px] py-8">
+          No blog posts published yet.
         </div>
-        <Frame15 />
-      </Link>
-      <Link to="/blog/best-wishes-baby-bird-pattern" className="content-stretch flex flex-[1_0_0] flex-col gap-[36px] items-center min-h-px min-w-px relative hover:shadow-lg hover:-translate-y-1 transition-all duration-200 rounded-[20px]" data-name="CARD 2">
-        <div className="h-[200px] sm:h-[250px] lg:h-[305px] relative rounded-[20px] shrink-0 w-full" data-name="Untitled design (56) 1">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-            <img alt="" className="absolute h-[126.67%] left-0 max-w-none top-[0.11%] w-full" src={imgUntitledDesign562} />
+      )}
+      {(posts ?? []).map((post, i) => (
+        <Link
+          key={post.id}
+          to={`/blog/${post.slug}`}
+          className="content-stretch flex flex-[1_0_0] flex-col gap-[36px] items-center min-h-px min-w-px relative hover:shadow-lg hover:-translate-y-1 transition-all duration-200 rounded-[20px]"
+          data-name={`CARD ${i + 1}`}
+        >
+          <div className="h-[200px] sm:h-[250px] lg:h-[305px] relative rounded-[20px] shrink-0 w-full">
+            <img
+              alt=""
+              className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full"
+              src={CARD_IMAGES[i % CARD_IMAGES.length]}
+            />
           </div>
-        </div>
-        <Frame16 />
-      </Link>
-      <Link to="/blog/maker-of-the-month-january-2026" className="content-stretch flex flex-[1_0_0] flex-col gap-[36px] items-center min-h-px min-w-px relative hover:shadow-lg hover:-translate-y-1 transition-all duration-200 rounded-[20px]" data-name="CARD 3">
-        <div className="h-[200px] sm:h-[250px] lg:h-[305px] relative rounded-[20px] shrink-0 w-full" data-name="Untitled design (56) 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgUntitledDesign563} />
-        </div>
-        <Frame17 />
-      </Link>
+          <BlogCardText title={post.title} excerpt={post.excerpt} />
+        </Link>
+      ))}
     </div>
   );
 }
